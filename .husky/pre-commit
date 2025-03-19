@@ -1,0 +1,5 @@
+# Lint staged files
+pnpx lint-staged
+
+# Run Astro checks
+pnpm check
