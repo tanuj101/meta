@@ -55,16 +55,15 @@ const hasContent = Astro.slots.has('default')
   </slot>
 
   <!-- content for the left pane -->
-  <main class="my-4 cntnr mx-auto p-0">
+  <main class="cntnr mx-auto my-4 p-0">
     <div class="cntnr">
       <div class="mx-auto">
-
         <ResumeIndex />
       </div>
     </div>
 
     <div class="cntnr">
-      <h2 class="hhr text-peach">Education</h2>
+      <h2 class="hhr text-primary">Education</h2>
     </div>
     <div class="mb-4 w-full max-w-screen-lg">
       <div class="hidden sm:block">
@@ -79,7 +78,7 @@ const hasContent = Astro.slots.has('default')
     </div>
 
     <div class="cntnr">
-      <h2 class="hhr text-peach">Roles</h2>
+      <h2 class="hhr text-primary">Roles</h2>
       <p>Click on an org (or epic) name to know more.</p>
     </div>
     <div class="mb-4 w-full max-w-screen-lg">
@@ -95,7 +94,7 @@ const hasContent = Astro.slots.has('default')
     </div>
 
     <div class="cntnr">
-      <h2 class="hhr text-peach">Projects</h2>
+      <h2 class="hhr text-primary">Projects</h2>
       <p>Click on an epic (or org) name to know more.</p>
     </div>
     <div class="mb-4 w-full max-w-screen-lg">
@@ -114,9 +113,9 @@ const hasContent = Astro.slots.has('default')
       {
         recivi.bio.skills?.length ? (
           <Fragment>
-            <h2 class="hhr text-peach">Skills</h2>
+            <h2 class="hhr text-primary">Skills</h2>
             <p>Apart from what's listed above, I also possess these skills.</p>
-            <ul class="ml-4 list-disc marker:text-peach sm:columns-2">
+            <ul class="ml-4 list-disc marker:text-primary sm:columns-2">
               {recivi.bio.skills?.map((skill) => (
                 <li>
                   <Skill {skill} />
@@ -148,6 +147,7 @@ const hasContent = Astro.slots.has('default')
   const hobbyYears = age - site.hobbyAge
   /** hobby years as a percent of age */
   const hobbyPercent = Math.ceil((hobbyYears / age) * 100)
+  console.log(site.hobbyAge, age, hobbyYears)
   const prodPercentEl = document.getElementById('hobby-percent')
   if (prodPercentEl) {
     prodPercentEl.innerText = `~${hobbyPercent}%`

@@ -17,6 +17,7 @@ import '@/styles/print.css'
 const { ...attrs } = Astro.props
 
 const pageTitle = getPageTitle('Résumé PDF')
+console.log(epics)
 ---
 
 <RootLayout
@@ -59,7 +60,7 @@ const pageTitle = getPageTitle('Résumé PDF')
       <!-- Top segment -->
       <header class="mb-[5mm] text-center">
         <h1 class="font-serif text-xl font-bold">
-          <Link url={site.baseUrl}>Dhruv Bhanushali</Link>
+          <Link url={site.baseUrl}>Tanuj Nagpal</Link>
         </h1>
         {
           recivi.bio.summary && (

@@ -28,6 +28,28 @@ const pathName = new URL(Astro.request.url).pathname
 function isCurr(row: Row) {
   return Boolean(row.url) && pathName.includes(row.url ?? '')
 }
+
+function getUrl(row: Row, key: 'epic' | 'org' | 'institute') {
+  const type = row.type
+
+  if (type === 'role' && key === 'org') {
+    return row.url
+  }
+
+  if (type === 'role' && key === 'epic') {
+    return row.secondaryURL
+  }
+
+  if (type === 'project' && key === 'epic') {
+    return row.url
+  }
+
+  if (type === 'project' && key === 'org') {
+    return row.secondaryURL
+  }
+
+  return row.url
+}
 ---
 
 <!-- Padding must be removed because cells are padded individually. -->
@@ -88,7 +110,7 @@ function isCurr(row: Row) {
                     {value && (
                       <IconName
                         {...value}
-                        url={row.url}
+                        url={getUrl(row, key)}
                         reserveSpace={key !== 'institute'}
                       />
                     )}

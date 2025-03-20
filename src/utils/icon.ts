@@ -12,6 +12,12 @@ import recivi from '@/assets/icons/recivi.svg?raw'
 import skyscraper from '@/assets/icons/skyscraper.svg?raw'
 import starlight from '@/assets/icons/starlight.svg?raw'
 import yojak from '@/assets/icons/yojak.svg?raw'
+import almada from '@/assets/icons/almada.svg?raw'
+import kwalee from '@/assets/icons/kwalee.svg?raw'
+import jtg from '@/assets/icons/jtg.svg?raw'
+import groupnexus from '@/assets/icons/groupnexus.svg?raw'
+import instantpost from '@/assets/icons/instantpost.svg?raw'
+import calyxpod from '@/assets/icons/pod.svg?raw'
 
 const knownIcons = {
   '2fac': _2fac,
@@ -25,14 +31,20 @@ const knownIcons = {
   skyscraper,
   starlight,
   yojak,
+  almada,
+  kwalee,
+  jtg,
+  groupnexus,
+  instantpost,
+  calyxpod,
 } as Record<string, string>
 
 // These are generally epics that don't have their own icon and just use the
 // the icon of the parent org.
 const aliases = {
-  vocabulary: 'creativecommons',
-  omniport: 'img',
-  platform: 'browserstack',
+  'kwalee-design-system': 'kwalee',
+  'casual-games-tools': 'kwalee',
+  'printing-platform': 'instantpost',
 } as Record<string, string>
 
 export type Source = 'simple_icons' | 'lucide'
@@ -55,7 +67,7 @@ export function getBody(name: string, source: Source = 'simple_icons') {
   }
 
   if (source === 'simple_icons') {
-    return siIcons.icons[identifier]?.body
+    return siIcons.icons[identifier]?.body || lIcons.icons[identifier]?.body
   } else if (source === 'lucide') {
     return lIcons.icons[identifier]?.body
   }

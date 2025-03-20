@@ -43,14 +43,14 @@ interface Site {
 }
 
 export const site: Site = {
-  baseUrl: 'https://tanuj-nagpal.is-a-good.dev',
+  baseUrl: 'https://tanuj-nagpal.is-a.dev',
   reciviUrl: import.meta.env.DEV
     ? `file://C:/Users/admin/projects/recivi/recivi.json`
     : 'https://raw.githubusercontent.com/tanuj101/recivi/refs/heads/main/recivi.json',
   // fediverse: '@dhruvkb@mastodon.social',
   title: '@tanuj',
   birthYear: 1999,
-  hobbyAge: 12,
-  jobAge: 4,
+  hobbyAge: 17,
+  jobAge: 19,
   showCredit: false,
 }

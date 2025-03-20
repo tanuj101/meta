@@ -15,7 +15,9 @@
 /* Apply universal styles, kind of like an anti-reset. */
 @layer base {
   /* Add vertical margins to block components. */
-
+  html {
+    scrollbar-gutter: stable;
+  }
   h1,
   h2,
   h3,
@@ -31,6 +33,10 @@
 
   h1 {
     @apply font-bold;
+  }
+
+  h2 {
+    @apply text-lg;
   }
 
   /* ...but for everything else, bold is too heavy. */
@@ -82,7 +88,7 @@
   }
 
   h1 {
-    @apply text-3xl text-peach sm:text-5xl;
+    @apply text-3xl text-primary sm:text-5xl;
   }
 
   table {

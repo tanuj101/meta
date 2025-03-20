@@ -26,6 +26,7 @@ export default {
       sapphire: 'var(--color-sapphire)',
       blue: 'var(--color-blue)',
       lavender: 'var(--color-lavender)',
+      primary: 'var(--color-peach)',
 
       curr: 'currentColor',
       trans: 'transparent',
