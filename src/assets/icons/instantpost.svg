@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="24px"
+  height="24px"
+  viewBox="0 0 24 24"
+  version="1.1">
+  <defs>
+    <filter
+      id="alpha"
+      filterUnits="objectBoundingBox"
+      x="0%"
+      y="0%"
+      width="100%"
+      height="100%">
+      <feColorMatrix
+        type="matrix"
+        in="SourceGraphic"
+        values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+    </filter>
+    <image
+      id="image7"
+      width="24"
+      height="24"
+      xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAABmJLR0QA/wD/AP+gvaeTAAAAIklEQVQ4jWP8/4eZgRqAiSqmjBo0atCoQaMGjRo0ahBFAABLOgIuppzipwAAAABJRU5ErkJggg==" />
+    <mask id="mask0">
+      <g filter="url(#alpha)">
+        <use xlink:href="#image7" />
+      </g>
+    </mask>
+    <clipPath id="clip1">
+      <rect
+        x="0"
+        y="0"
+        width="24"
+        height="24" />
+    </clipPath>
+    <g
+      id="surface6"
+      clip-path="url(#clip1)">
+      <rect
+        x="0"
+        y="0"
+        width="24"
+        height="24"
+        style="fill: rgb(100%, 100%, 100%); fill-opacity: 0; stroke: none" />
+    </g>
+  </defs>
+  <g id="surface1">
+    <use
+      xlink:href="#surface6"
+      mask="url(#mask0)" />
+    <path
+      style="
+        fill: none;
+        stroke-width: 5;
+        stroke-linecap: butt;
+        stroke-linejoin: round;
+        stroke: currentColor;
+        stroke-opacity: 1;
+        stroke-miterlimit: 5;
+      "
+      d="M 11.938477 63.588867 L 20.712891 26.791992 C 21.152344 24.931641 22.954102 23.422852 24.726562 23.422852 L 50.463867 23.217773 L 76.201172 23.027344 C 77.988281 23.012695 79.057617 24.492188 78.618164 26.352539 L 69.84375 63.149414 C 69.404297 64.995117 67.617188 66.503906 65.830078 66.518555 L 14.355469 66.914062 C 12.583008 66.914062 11.499023 65.43457 11.938477 63.588867 Z M 11.938477 63.588867 "
+      transform="matrix(0.266667,0,0,0.266667,0,0)" />
+    <path
+      style="
+        fill: none;
+        stroke-width: 5;
+        stroke-linecap: butt;
+        stroke-linejoin: round;
+        stroke: currentColor;
+        stroke-opacity: 1;
+        stroke-miterlimit: 4;
+      "
+      d="M 21.972656 24.301758 L 45.556641 45.19043 L 79.40918 24.301758 "
+      transform="matrix(0.266667,0,0,0.266667,0,0)" />
+  </g>
+</svg>

@@ -56,7 +56,7 @@ const metadata = {
   </slot>
 
   <div class="cntnr my-4">
-    <h1 class="text-3xl text-peach sm:text-5xl">{post.data.title}</h1>
+    <h1 class="text-3xl text-primary sm:text-5xl">{post.data.title}</h1>
 
     <dl class="mb-2 grid grid-cols-[auto,_1fr] gap-x-2">
       <dt class="text-subtle">Tags:</dt>
@@ -85,7 +85,7 @@ const metadata = {
       <Content />
     </article>
 
-    <h2 class="hhr text-peach">Responses</h2>
+    <h2 class="hhr text-primary">Responses</h2>
     <p>
       If you have thoughts or feelings about this post, send them my way via
       your preferred <Link url="/">communication channel</Link>. Webmention
@@ -97,7 +97,7 @@ const metadata = {
     post.data.series && (
       <Fragment>
         <div class="cntnr">
-          <h2 class="hhr text-peach">Series: '{post.data.series}'</h2>
+          <h2 class="hhr text-primary">Series: '{post.data.series}'</h2>
           <p>
             This post is part of the '{post.data.series}' series. If you liked
             it, you might also like these other posts in the series.

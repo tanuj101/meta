@@ -15,7 +15,8 @@ const pages = await getPages()
 const navLinks = pages
   .filter(
     (page): page is typeof page & { data: { index: number } } =>
-      page.id !== 'index' && page.id !== 'writings' && // Exclude the home page.
+      page.id !== 'index' &&
+      page.id !== 'writings' && // Exclude the home page.
       typeof page.data.index !== 'undefined' // Only include pages with an index.
   )
   .sort((a, b) => a.data.index - b.data.index)
@@ -40,14 +41,14 @@ function getIsExactMatch(url: string): boolean {
 ---
 
 <header
-  class=" border-b py-4  w-full"
+  class="w-full border-b py-4"
   class:list={classes}>
-  <div class="cntnr flex flex-col justify-between gap-2 sm:flex-row m-auto">
+  <div class="cntnr m-auto flex flex-col justify-between gap-2 sm:flex-row">
     <Link url="/">
       <!-- Class `inline-block` prevents underline from `Link`. -->
       <span
-        class="inline-block font-bold hover:underline hover:decoration-wavy before:text-sm"
-        class:list={[{ 'text-peach underline decoration-peach': isHome }]}>
+        class="inline-block font-bold before:text-sm hover:underline hover:decoration-wavy"
+        class:list={[{ 'text-primary underline decoration-peach': isHome }]}>
         {site.title}
       </span>
     </Link>
@@ -61,7 +62,7 @@ function getIsExactMatch(url: string): boolean {
                 <span
                   class="inline-block"
                   class:list={[
-                    { 'text-peach underline': getIsMatch(link.url) },
+                    { 'text-primary underline': getIsMatch(link.url) },
                     getIsExactMatch(link.url)
                       ? ['decoration-peach', 'visited:decoration-peach']
                       : [

@@ -1,5 +1,5 @@
 ---
-import ResumeLayout from '@/layouts/resume.astro'
+import ScreenLayout from '@/layouts/screen.astro'
 
 import IconName from '@/components/IconName.astro'
 import Meta from '@/components/Meta.astro'
@@ -33,15 +33,15 @@ const metadata = {
 }
 ---
 
-<ResumeLayout>
+<ScreenLayout>
   <slot
     name="head"
     slot="head">
     <Meta data={metadata} />
   </slot>
 
-  <div class="cntnr my-4">
-    <h1 class="text-3xl text-peach sm:text-5xl">
+  <div class="cntnr mx-auto my-4">
+    <h1 class="text-3xl text-primary sm:text-5xl">
       <IconName {...org} />
     </h1>
 
@@ -65,11 +65,17 @@ const metadata = {
     {
       org.roles.map((role) => (
         <div>
-          <h2 class="hhr text-peach">
-            {role.name}
-            {role.type &&
-              role.type !== 'full-time' &&
-              `(${roleTypeDisplay(role.type)})`}
+          <h2
+            id={role.id}
+            class="hhr text-primary">
+            <a
+              href={`#${role.id}`}
+              class="text-[inherit] no-underline decoration-curr visited:text-[inherit] visited:decoration-curr hover:underline">
+              {role.name}
+              {role.type &&
+                role.type !== 'full-time' &&
+                `(${roleTypeDisplay(role.type)})`}
+            </a>
           </h2>
 
           <dl class="[:not(:has(dt))]:hidden mb-2 grid grid-cols-[auto,_1fr] gap-x-2">
@@ -110,8 +116,8 @@ const metadata = {
 
           {role.highlights?.length ? (
             <Fragment>
-              <h3 class="hhrs text-peach">Highlights</h3>
-              <ul class="mb-4 list-disc pl-4 marker:text-peach">
+              <h3 class="hhrs text-primary">Highlights</h3>
+              <ul class="mb-4 list-disc pl-4 marker:text-primary">
                 {role.highlights?.map((hl) => (
                   <li set:html={hl} />
                 ))}
@@ -122,4 +128,4 @@ const metadata = {
       ))
     }
   </div>
-</ResumeLayout>
+</ScreenLayout>

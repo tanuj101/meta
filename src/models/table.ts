@@ -39,6 +39,7 @@ export type Data = PostData | CertData | RoleData | ProjectData
 export type Row = {
   isLastSibling: boolean
   url?: string
+  secondaryURL?: string
   groupId: string | number | undefined
 } & (
   | { type: 'post'; data: PostData }
@@ -79,7 +80,7 @@ export const roleColumns: ColumnSpec[] = [
 export const projectColumns: ColumnSpec[] = [
   { type: 'project', id: 'epic' },
   { type: 'project', id: 'name' },
-  { type: 'project', id: 'link' },
+  // { type: 'project', id: 'link' },
   { type: 'project', id: 'org' },
   { type: 'project', id: 'tech', isExpanding: true },
 ]
@@ -134,6 +135,7 @@ export const projectData = projects.map(
     isLastSibling: project.epic !== projects[idx + 1]?.epic,
     groupId: project.epic.id,
     url: `/resume/epics/${project.epic.id}/`,
+    secondaryURL: `/resume/orgs/${project.epic.role?.org.id}/`,
   })
 )
 
@@ -150,5 +152,6 @@ export const roleData = roles.map(
     isLastSibling: role.org !== roles[idx + 1]?.org,
     groupId: role.org.id,
     url: `/resume/orgs/${role.org.id}/`,
+    secondaryURL: `/resume/epics/${role.epics[0]?.id}/`,
   })
 )
