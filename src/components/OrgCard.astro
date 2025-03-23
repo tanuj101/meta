@@ -5,6 +5,8 @@ import TimePeriod from '@/components/TimePeriod.astro'
 
 import type { Org } from '@/models/recivi'
 
+import { epics } from '@/stores/recivi'
+
 interface Props {
   org: Org
 }
@@ -19,7 +21,7 @@ const { org } = Astro.props
         url={`/resume/orgs/${org.id}`}
       /></strong
     >
-    {org.url && <Link url={org.url}>link</Link>}
+    {org.url && <Link url={org.url}>website</Link>}
   </div>
 
   <ul class="mt-1">
@@ -27,7 +29,14 @@ const { org } = Astro.props
       org.roles.map((role) => (
         <li>
           <div class="flex justify-between gap-3">
-            {role.name}
+            <span>
+              {role.name}
+              <span class="text-[0.5rem]">
+                {role.epicIds?.[0]
+                  ? `@${epics.find((epic) => epic.id === role.epicIds?.[0])?.name}`
+                  : ''}
+              </span>
+            </span>
             <span class="text-subtle">
               <TimePeriod {...role.period} />
             </span>

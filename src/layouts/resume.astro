@@ -55,7 +55,7 @@ const hasContent = Astro.slots.has('default')
   </slot>
 
   <!-- content for the left pane -->
-  <main class="cntnr mx-auto my-4 p-0">
+  <article class="cntnr mx-auto my-4 p-0">
     <div class="cntnr">
       <div class="mx-auto">
         <ResumeIndex />
@@ -126,42 +126,8 @@ const hasContent = Astro.slots.has('default')
         ) : undefined
       }
     </div>
-  </main>
+  </article>
 
   <!-- content for the right pane -->
   <slot slot={hasContent ? 'secondary' : undefined} />
 </ScreenLayout>
-
-<script>
-  /** Calculate the percentage of life spent producing software. */
-
-  import { site } from '@/stores/site'
-
-  function highlightEl(percentEl: HTMLElement) {
-    percentEl.style.borderBottomWidth = '1px'
-    percentEl.style.cursor = 'help'
-  }
-
-  const age = new Date().getFullYear() - site.birthYear
-
-  const hobbyYears = age - site.hobbyAge
-  /** hobby years as a percent of age */
-  const hobbyPercent = Math.ceil((hobbyYears / age) * 100)
-  console.log(site.hobbyAge, age, hobbyYears)
-  const prodPercentEl = document.getElementById('hobby-percent')
-  if (prodPercentEl) {
-    prodPercentEl.innerText = `~${hobbyPercent}%`
-    prodPercentEl.title = `~${hobbyYears} years`
-    highlightEl(prodPercentEl)
-  }
-
-  const jobYears = age - site.jobAge
-  /** job years as a percent of hobby years */
-  const jobPercent = Math.ceil((jobYears / hobbyYears) * 100)
-  const jobPercentEl = document.getElementById('job-percent')
-  if (jobPercentEl) {
-    jobPercentEl.innerText = `~${jobPercent}%`
-    jobPercentEl.title = `~${jobYears} years`
-    highlightEl(jobPercentEl)
-  }
-</script>

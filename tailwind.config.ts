@@ -38,7 +38,7 @@ export default {
         // subtext0: 'var(--color-subtext0)',
         // subtext1: 'var(--color-subtext1)',
         // subtle
-        subtle: 'var(--color-overlay1)',
+        subtle: 'var(--color-overlay2)',
       },
       backgroundColor: {
         default: 'var(--color-base)',
@@ -61,23 +61,23 @@ export default {
       fontSize: {
         '5xl': [
           defaultTheme.fontSize['5xl'][0],
-          { lineHeight: defaultTheme.lineHeight.tight },
+          { lineHeight: defaultTheme.lineHeight.none },
         ],
         '6xl': [
           defaultTheme.fontSize['6xl'][0],
-          { lineHeight: defaultTheme.lineHeight.tight },
+          { lineHeight: defaultTheme.lineHeight.none },
         ],
         '7xl': [
           defaultTheme.fontSize['7xl'][0],
-          { lineHeight: defaultTheme.lineHeight.tight },
+          { lineHeight: defaultTheme.lineHeight.none },
         ],
         '8xl': [
           defaultTheme.fontSize['8xl'][0],
-          { lineHeight: defaultTheme.lineHeight.tight },
+          { lineHeight: defaultTheme.lineHeight.none },
         ],
         '9xl': [
           defaultTheme.fontSize['9xl'][0],
-          { lineHeight: defaultTheme.lineHeight.tight },
+          { lineHeight: defaultTheme.lineHeight.none },
         ],
       },
       spacing: {

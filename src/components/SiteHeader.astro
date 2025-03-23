@@ -15,8 +15,7 @@ const pages = await getPages()
 const navLinks = pages
   .filter(
     (page): page is typeof page & { data: { index: number } } =>
-      page.id !== 'index' &&
-      page.id !== 'writings' && // Exclude the home page.
+      page.id !== 'index' && // Exclude the home page.
       typeof page.data.index !== 'undefined' // Only include pages with an index.
   )
   .sort((a, b) => a.data.index - b.data.index)
@@ -44,37 +43,46 @@ function getIsExactMatch(url: string): boolean {
   class="w-full border-b py-4"
   class:list={classes}>
   <div class="cntnr m-auto flex flex-col justify-between gap-2 sm:flex-row">
-    <Link url="/">
+    <Link
+      url="/"
+      class="inline-block font-bold before:text-sm hover:underline hover:decoration-wavy"
+      class:list={[
+        {
+          'text-primary underline decoration-peach visited:decoration-peach':
+            isHome,
+          'no-underline decoration-curr visited:decoration-curr hover:underline':
+            !isHome,
+        },
+      ]}>
       <!-- Class `inline-block` prevents underline from `Link`. -->
-      <span
-        class="inline-block font-bold before:text-sm hover:underline hover:decoration-wavy"
-        class:list={[{ 'text-primary underline decoration-peach': isHome }]}>
-        {site.title}
-      </span>
+      {site.title}
+      <span> </span>
     </Link>
     <nav>
       <ul class="flex list-none">
         {
           navLinks.map((link) => (
             <li class="me-4 last:me-0">
-              <Link url={link.url}>
+              <Link
+                url={link.url}
+                class="inline-block"
+                class:list={[
+                  {
+                    'text-primary visited:decoration-curr [&]:underline':
+                      getIsMatch(link.url),
+                  },
+                  getIsExactMatch(link.url)
+                    ? ['decoration-peach', 'visited:decoration-peach']
+                    : [
+                        'no-underline',
+                        'hover:underline',
+                        'hover:decoration-wavy',
+                        'decoration-curr',
+                        'visited:decoration-curr',
+                      ],
+                ]}>
                 {/* Class `inline-block` prevents underline from `Link`. */}
-                <span
-                  class="inline-block"
-                  class:list={[
-                    { 'text-primary underline': getIsMatch(link.url) },
-                    getIsExactMatch(link.url)
-                      ? ['decoration-peach', 'visited:decoration-peach']
-                      : [
-                          'no-underline',
-                          'hover:underline',
-                          'hover:decoration-wavy',
-                          'decoration-curr',
-                          'visited:decoration-curr',
-                        ],
-                  ]}>
-                  {link.text}
-                </span>
+                <span>{link.text}</span>
               </Link>
             </li>
           ))

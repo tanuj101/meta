@@ -20,6 +20,13 @@ const pageTitle = getPageTitle('Résumé PDF')
 console.log(epics)
 ---
 
+<style type="text/css" media="print">
+  @page {
+    size: auto; /* auto is the initial value */
+    margin: 0; /* this affects the margin in the printer settings */
+  }
+</style>
+
 <RootLayout
   {...attrs}
   rootClasses={['print:light-theme', 'pdf', 'text-[12px]', 'leading-snug']}>
@@ -56,9 +63,9 @@ console.log(epics)
 
     <!-- Page -->
     <div
-      class="print:bg-white relative mx-auto mt-2 h-[297mm] w-[210mm] origin-top border p-[5mm] shadow-md after:absolute after:inset-[5mm] after:-z-10 after:border after:border-red hover:shadow-lg print:m-0 print:scale-100 print:border-none print:shadow-none print:after:hidden print:hover:shadow-none">
+      class="print:bg-white print relative mx-auto mt-2 h-[297mm] w-[210mm] origin-top border p-[5mm] shadow-md after:absolute after:inset-[5mm] after:-z-10 after:border after:border-red hover:shadow-lg print:m-0 print:scale-100 print:border-none print:shadow-none print:after:hidden print:hover:shadow-none">
       <!-- Top segment -->
-      <header class="mb-[5mm] text-center">
+      <div class="mb-[1rem] text-center">
         <h1 class="font-serif text-xl font-bold">
           <Link url={site.baseUrl}>Tanuj Nagpal</Link>
         </h1>
@@ -71,7 +78,7 @@ console.log(epics)
           )
         }
         <ContactList />
-      </header>
+      </div>
 
       <!-- Two-pane content -->
       <main class="grid grid-cols-2 gap-[5mm]">
@@ -90,7 +97,7 @@ console.log(epics)
             }
           </ul>
 
-          <h2 class="hhre mb-2 mt-[5mm] font-serif text-lg font-medium">
+          <h2 class="hhre mb-1 mt-[3mm] font-serif text-lg font-medium">
             Other skills
           </h2>
           {

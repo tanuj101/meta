@@ -76,7 +76,7 @@ export function getOgImage(content: {
                 <svg
                   viewBox="0 0 24 24"
                   class="mr-4 h-20 w-20"
-                  fill="currentColor">
+                  fill="#fab387">
                   ${getBody(icon)}
                 </svg>
               `
@@ -97,5 +97,6 @@ export function getOgImage(content: {
     height: 600,
     fonts,
   }
+
   return new ImageResponse(element, config)
 }
