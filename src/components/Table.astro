@@ -132,7 +132,7 @@ function getUrl(row: Row, key: 'epic' | 'org' | 'institute') {
                     </ul>
                   </Fragment>
                 ) : key === 'link' ? (
-                  value && <Link url={value} />
+                  value && <Link url={value}>homepage</Link>
                 ) : key === 'tech' ? (
                   <Fragment>
                     {/* prettier-ignore */}

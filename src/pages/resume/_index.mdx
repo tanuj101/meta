@@ -8,7 +8,16 @@ index: 2
 
 import Link from '@/components/Link.astro'
 
+import { site } from '@/stores/site'
 import { recivi } from '@/stores/recivi'
+
+export const age = new Date().getFullYear() - site.birthYear
+
+export const hobbyYears = age - site.hobbyAge
+export const hobbyPercent = Math.ceil((hobbyYears / age) * 100)
+
+export const jobYears = age - site.jobAge
+export const jobPercent = Math.ceil((jobYears / hobbyYears) * 100)
 
 export const githubUrl = recivi.bio.profiles?.find(
   (profile) => profile.site.id === 'github' || profile.site.name === 'GitHub'
@@ -16,11 +25,9 @@ export const githubUrl = recivi.bio.profiles?.find(
 
 # Résumé
 
-{/* Spans `#hobby-percent` and `#job-percent` are filled by JS. */}
-
 I've developed software as a hobbyist for
-<span class="border-dashed" id="hobby-percent">almost all</span> of my life, and
-for <span class="border-dashed" id="job-percent">a good fraction</span> of that,
+<span class="border-dashed cursor-help" title={`${hobbyYears} years`}>~{hobbyPercent}%</span> of my life, and
+for <span class="border-dashed cursor-help" title={`${jobYears} years`}> ~{jobPercent}% </span> of that,
 it's also been my full-time job. It's a privilege to be able to make a living
 doing what I love.
 

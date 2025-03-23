@@ -20,5 +20,5 @@ const readable = dateReadable(rcvDate)
 <date
   class="font-mono"
   set:html={display}
-  title={readable}
+  title={display === readable ? null : readable}
 />

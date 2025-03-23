@@ -12,8 +12,9 @@ interface Props {
    * pass `undefined`.
    */
   url?: Url | undefined
+  target?: HTMLAnchorElement['target']
 }
-let { id = undefined, name, url = undefined, ...attrs } = Astro.props
+let { id = undefined, name, url = undefined, target, ...attrs } = Astro.props
 ---
 
 <span class="inline-block">
@@ -25,5 +26,15 @@ let { id = undefined, name, url = undefined, ...attrs } = Astro.props
       />
     )
   }
-  {url ? <Link {url}>{name}</Link> : <span>{name}</span>}
+  {
+    url ? (
+      <Link
+        {url}
+        {target}>
+        {name}
+      </Link>
+    ) : (
+      <span>{name}</span>
+    )
+  }
 </span>

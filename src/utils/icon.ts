@@ -15,7 +15,7 @@ import yojak from '@/assets/icons/yojak.svg?raw'
 import almada from '@/assets/icons/almada.svg?raw'
 import kwalee from '@/assets/icons/kwalee.svg?raw'
 import jtg from '@/assets/icons/jtg.svg?raw'
-import groupnexus from '@/assets/icons/groupnexus.svg?raw'
+import nexusplatform from '@/assets/icons/nexusplatform.svg?raw'
 import instantpost from '@/assets/icons/instantpost.svg?raw'
 import calyxpod from '@/assets/icons/pod.svg?raw'
 
@@ -34,7 +34,7 @@ const knownIcons = {
   almada,
   kwalee,
   jtg,
-  groupnexus,
+  nexusplatform,
   instantpost,
   calyxpod,
 } as Record<string, string>
@@ -44,7 +44,11 @@ const knownIcons = {
 const aliases = {
   'kwalee-design-system': 'kwalee',
   'casual-games-tools': 'kwalee',
+  'ds-infra': 'kwalee',
+  'ds-docs': 'kwalee',
   'printing-platform': 'instantpost',
+  'printing-sdk': 'instantpost',
+  'bootstrap': 'instantpost',
 } as Record<string, string>
 
 export type Source = 'simple_icons' | 'lucide'

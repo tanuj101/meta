@@ -22,7 +22,10 @@ function timestamp() {
  * the page to a PDF file inside the `dist/` directory.
  */
 async function printToPdf() {
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({
+    browser: 'firefox',
+    // headless: false
+  })
   const page = await browser.newPage()
   await page.goto('http://localhost:4322/resume/pdf', {
     waitUntil: 'networkidle0',

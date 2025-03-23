@@ -16,10 +16,10 @@ const endDisplay = end && dateDisplay(end)
 const endReadable = end && dateReadable(end)
 ---
 
-<span class="font-mono">
+<span class="whitespace-nowrap font-mono">
   <span
     set:html={startDisplay}
-    title={startReadable}
+  title={startReadable}
   />
   &ndash;
   {

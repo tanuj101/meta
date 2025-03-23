@@ -1,7 +1,7 @@
 ---
 import { render, type CollectionEntry } from 'astro:content'
 
-import WritingsLayout from '@/layouts/writings.astro'
+import ScreenLayout from '@/layouts/screen.astro'
 
 import Meta from '@/components/Meta.astro'
 import Link from '@/components/Link.astro'
@@ -48,14 +48,14 @@ const metadata = {
 }
 ---
 
-<WritingsLayout>
+<ScreenLayout>
   <slot
     name="head"
     slot="head">
     <Meta data={metadata} />
   </slot>
 
-  <div class="cntnr my-4">
+  <div class="cntnr mx-auto my-4">
     <h1 class="text-3xl text-primary sm:text-5xl">{post.data.title}</h1>
 
     <dl class="mb-2 grid grid-cols-[auto,_1fr] gap-x-2">
@@ -110,4 +110,4 @@ const metadata = {
       </Fragment>
     )
   }
-</WritingsLayout>
+</ScreenLayout>

@@ -50,15 +50,15 @@ const categories = await getCategories()
   </slot>
 
   <!-- content for the left pane -->
-  <main class="my-4 flex-grow">
-    <div class="cntnr">
+  <article class="my-4 flex-grow">
+    <div class="cntnr mx-auto">
       <WritingsIndex />
     </div>
 
     <!-- Only shown when JS is enabled, so it will be revealed by JS. -->
     <div
       id="all-tags"
-      class="cntnr hidden">
+      class="cntnr mx-auto hidden">
       <h2 class="hhr text-primary">Categories</h2>
 
       {
@@ -100,28 +100,26 @@ const categories = await getCategories()
       }
     </div>
 
-    <div class="cntnr">
+    <div class="cntnr mx-auto">
       <h2 class="hhr text-primary">Posts</h2>
     </div>
-    <div id="all-posts">
-      {
-        postsData.length ? (
-          <Table
-            columns={postColumns}
-            data={postsData}
+    {
+      postsData.length ? (
+        <Table
+          columns={postColumns}
+          data={postsData}
+        />
+      ) : (
+        <p class="cntnr mx-auto text-yellow">
+          <Icon
+            source="lucide"
+            name="circle-slash-2"
           />
-        ) : (
-          <p class="cntnr text-yellow">
-            <Icon
-              source="lucide"
-              name="circle-slash-2"
-            />
-            No posts to show.
-          </p>
-        )
-      }
-    </div>
-  </main>
+          No posts to show.
+        </p>
+      )
+    }
+  </article>
 
   <!-- content for the right pane -->
   <slot slot={hasContent ? 'secondary' : undefined}>Hello</slot>
