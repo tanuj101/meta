@@ -23,7 +23,7 @@ function timestamp() {
  */
 async function printToPdf() {
   const browser = await puppeteer.launch({
-    browser: 'firefox',
+    // browser: 'firefox',
     // headless: false
   })
   const page = await browser.newPage()
