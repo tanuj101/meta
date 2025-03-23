@@ -15,7 +15,7 @@
     "build": "astro build && pnpm print",
     "preview": "astro preview --host --port 4322",
     "astro": "astro",
-    "print": "start-server-and-test preview http://localhost:4322/ 'tsx src/scripts/print.ts'"
+    "print": "npx puppeteer browsers install chrome && start-server-and-test preview http://localhost:4322/ 'tsx src/scripts/print.ts'"
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.4.1",
