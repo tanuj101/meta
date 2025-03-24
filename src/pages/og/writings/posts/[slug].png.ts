@@ -1,32 +1,31 @@
-import type { CollectionEntry } from 'astro:content'
-import type { APIRoute } from 'astro'
+import type { CollectionEntry } from "astro:content";
+import type { APIRoute } from "astro";
 
-import { getPosts } from '@/utils/collections'
-import { dateDisplay, getRcvDate } from '@/utils/date_fmt'
-import { getOgImage } from '@/utils/og_image'
+import { getPosts } from "@/utils/collections";
+import { dateDisplay, getRcvDate } from "@/utils/date_fmt";
+import { getOgImage } from "@/utils/og_image";
 
 interface Props {
-  post: CollectionEntry<'posts'>
+	post: CollectionEntry<"posts">;
 }
 
 export async function getStaticPaths() {
-  const posts = await getPosts()
-  return posts.map((post) => ({
-    params: { slug: post.id.substring(5) },
-    props: { post },
-  }))
+	const posts = await getPosts();
+	return posts.map((post) => ({
+		params: { slug: post.id.substring(5) },
+		props: { post },
+	}));
 }
 
-export const GET: APIRoute<Props> = async function ({ props: { post } }) {
-  return getOgImage({
-    left: 'Writings',
-    right: `
+export const GET: APIRoute<Props> = async ({ props: { post } }) =>
+	getOgImage({
+		left: "Writings",
+		right: `
       <div class="flex">
         <div class="mr-3">First published</div>
         <div class="font-mono">${dateDisplay(getRcvDate(post.data.pubDate), false)}</div>
       </div>
     `,
-    title: post.data.title,
-    description: post.data.description,
-  })
-}
+		title: post.data.title,
+		description: post.data.description,
+	});

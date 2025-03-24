@@ -1,8 +1,8 @@
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection } from "astro:content";
 
-export async function getPages(): Promise<CollectionEntry<'pages'>[]> {
-  const pages: CollectionEntry<'pages'>[] = await getCollection('pages')
-  return pages
+export async function getPages(): Promise<CollectionEntry<"pages">[]> {
+	const pages: CollectionEntry<"pages">[] = await getCollection("pages");
+	return pages;
 }
 
 /**
@@ -11,11 +11,11 @@ export async function getPages(): Promise<CollectionEntry<'pages'>[]> {
  *
  * @returns a collection of posts
  */
-export async function getPosts(): Promise<CollectionEntry<'posts'>[]> {
-  const posts: CollectionEntry<'posts'>[] = await getCollection('posts')
-  return posts
-    .filter((item) =>  !item.data.isDraft)
-    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()) // sort in reverse order
+export async function getPosts(): Promise<CollectionEntry<"posts">[]> {
+	const posts: CollectionEntry<"posts">[] = await getCollection("posts");
+	return posts
+		.filter((item) => !item.data.isDraft)
+		.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()); // sort in reverse order
 }
 
 /**
@@ -26,7 +26,7 @@ export async function getPosts(): Promise<CollectionEntry<'posts'>[]> {
  * @returns a list of categories
  */
 export async function getCategories(): Promise<string[]> {
-  const posts = await getPosts()
-  const tags = posts.flatMap((post) => post.data.categories)
-  return [...new Set(tags)].sort()
+	const posts = await getPosts();
+	const tags = posts.flatMap((post) => post.data.categories);
+	return [...new Set(tags)].sort();
 }

@@ -11,36 +11,36 @@
  * - default slot for the right pane content
  */
 
-import { getEntry } from 'astro:content'
+import { getEntry } from "astro:content";
 
-import ScreenLayout from '@/layouts/screen.astro'
+import ScreenLayout from "@/layouts/screen.astro";
 
-import EpicCard from '@/components/EpicCard.astro'
-import InstituteCard from '@/components/InstituteCard.astro'
-import Meta from '@/components/Meta.astro'
-import OrgCard from '@/components/OrgCard.astro'
-import Table from '@/components/Table.astro'
-import Skill from '@/components/Skill.astro'
+import EpicCard from "@/components/EpicCard.astro";
+import InstituteCard from "@/components/InstituteCard.astro";
+import Meta from "@/components/Meta.astro";
+import OrgCard from "@/components/OrgCard.astro";
+import Skill from "@/components/Skill.astro";
+import Table from "@/components/Table.astro";
 
-import { Content as ResumeIndex } from '@/pages/resume/_index.mdx'
+import { Content as ResumeIndex } from "@/pages/resume/_index.mdx";
 
 import {
-  roleColumns,
-  projectColumns,
-  roleData,
-  projectData,
-  certColumns,
-  certData,
-} from '@/models/table'
-import { institutes, epics, orgs, recivi } from '@/stores/recivi'
+	certColumns,
+	certData,
+	projectColumns,
+	projectData,
+	roleColumns,
+	roleData,
+} from "@/models/table";
+import { epics, institutes, orgs, recivi } from "@/stores/recivi";
 
 // Forward all props to the parent layout `MainLayout`.
-const attrs = Astro.props
+const attrs = Astro.props;
 
-const id = 'resume'
-const metadata = (await getEntry('pages', id))?.data
+const id = "resume";
+const metadata = (await getEntry("pages", id))?.data;
 
-const hasContent = Astro.slots.has('default')
+const hasContent = Astro.slots.has("default");
 ---
 
 <ScreenLayout {...attrs}>

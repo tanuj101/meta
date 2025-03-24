@@ -1,15 +1,15 @@
 ---
-import Icon from '@/components/Icon.astro'
-import IconName from '@/components/IconName.astro'
-import Link from '@/components/Link.astro'
+import Icon from "@/components/Icon.astro";
+import IconName from "@/components/IconName.astro";
+import Link from "@/components/Link.astro";
 
-import type { Epic } from '@/models/recivi'
-import { urlToDest } from '@/utils/recivi'
+import type { Epic } from "@/models/recivi";
+import { urlToDest } from "@/utils/recivi";
 
 interface Props {
-  epic: Epic
+	epic: Epic;
 }
-const { epic } = Astro.props
+const { epic } = Astro.props;
 ---
 
 <li class="mb-3 border-b pb-3 last:mb-0 last:border-none last:pb-0">

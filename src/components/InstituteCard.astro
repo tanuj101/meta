@@ -1,14 +1,14 @@
 ---
-import Link from '@/components/Link.astro'
-import DateComponent from '@/components/Date.astro'
+import DateComponent from "@/components/Date.astro";
+import Link from "@/components/Link.astro";
 
-import { certDisplay } from '@/utils/recivi'
-import type { Institute } from '@/models/recivi'
+import type { Institute } from "@/models/recivi";
+import { certDisplay } from "@/utils/recivi";
 
 interface Props {
-  institute: Institute
+	institute: Institute;
 }
-const { institute } = Astro.props
+const { institute } = Astro.props;
 ---
 
 <div class="border-b px-4 py-2">

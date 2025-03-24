@@ -1,107 +1,45 @@
 ---
-import { getBody } from '@/utils/icon'
+import { getBody } from "@/utils/icon";
 
 interface Props {
-  source?: 'simple_icons' | 'lucide'
-  name: string
-  /** text to shown when the icon is hovered over */
-  title?: string
-  reserveSpace?: boolean
+	source?: "simple_icons" | "lucide";
+	name: string;
+	/** text to shown when the icon is hovered over */
+	title?: string;
+	reserveSpace?: boolean;
 }
-let { source, name, title, reserveSpace = false } = Astro.props
-export const CHARS =
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
-export const utf8Encode = (input: string): string => {
-  input = input.replace(/\r\n/g, '\n')
+let { source, name, title, reserveSpace = false } = Astro.props;
 
-  let i = 0
-  let output = ''
-
-  for (; i < input.length; i++) {
-    const c = input.charCodeAt(i)
-
-    if (c < 128) {
-      output += String.fromCharCode(c)
-    } else if (c > 127 && c < 2048) {
-      output += String.fromCharCode((c >> 6) | 192)
-      output += String.fromCharCode((c & 63) | 128)
-    } else {
-      output += String.fromCharCode((c >> 12) | 224)
-      output += String.fromCharCode(((c >> 6) & 63) | 128)
-      output += String.fromCharCode((c & 63) | 128)
-    }
-  }
-
-  return output
-}
-export const encode = (input: string): string => {
-  let i = 0
-  let chr1: number
-  let chr2: number
-  let chr3: number
-  let enc1: number
-  let enc2: number
-  let enc3: number
-  let enc4: number
-  let output = ''
-
-  input = utf8Encode(input)
-
-  while (i < input.length) {
-    chr1 = input.charCodeAt(i++)
-    chr2 = input.charCodeAt(i++)
-    chr3 = input.charCodeAt(i++)
-
-    enc1 = chr1 >> 2
-    enc2 = ((chr1 & 3) << 4) | (chr2 >> 4)
-    enc3 = ((chr2 & 15) << 2) | (chr3 >> 6)
-    enc4 = chr3 & 63
-
-    if (isNaN(chr2)) {
-      enc3 = enc4 = 64
-    } else if (isNaN(chr3)) {
-      enc4 = 64
-    }
-
-    output =
-      output +
-      CHARS.charAt(enc1) +
-      CHARS.charAt(enc2) +
-      CHARS.charAt(enc3) +
-      CHARS.charAt(enc4)
-  }
-
-  return output
-}
-const body = getBody(name, source)
+const body = getBody(name, source);
 
 export function generateUniqueIds(svgString: string) {
-  const idMap: Record<string, string> = {}
+	const idMap: Record<string, string> = {};
+	let result = "";
 
-  // Regex patterns for attributes that reference IDs
-  const idPattern = /id="([^"]+)"/g
-  const hrefPattern = /xlink:href="#([^"]+)"/g
-  const urlPattern = /url\(#([^)]+)\)/g
-  const maskPattern = /mask="url\(#([^)]+)\)"/g
+	// Regex patterns for attributes that reference IDs
+	const idPattern = /id="([^"]+)"/g;
+	const hrefPattern = /xlink:href="#([^"]+)"/g;
+	const urlPattern = /url\(#([^)]+)\)/g;
+	const maskPattern = /mask="url\(#([^)]+)\)"/g;
 
-  // Generate unique IDs for all `id` attributes
-  svgString = svgString.replace(idPattern, (_match, id) => {
-    if (!idMap[id]) {
-      idMap[id] = `id-${Math.random().toString()}`
-    }
-    return `id="${idMap[id]}"`
-  })
+	// Generate unique IDs for all `id` attributes
+	result = svgString.replace(idPattern, (_match, id) => {
+		if (!idMap[id]) {
+			idMap[id] = `id-${Math.random().toString()}`;
+		}
+		return `id="${idMap[id]}"`;
+	});
 
-  // Replace references with the new unique IDs
-  const replaceRefs = (match: string, refId: string) => {
-    return match.replace(refId, idMap[refId] || refId)
-  }
+	// Replace references with the new unique IDs
+	const replaceRefs = (match: string, refId: string) => {
+		return match.replace(refId, idMap[refId] || refId);
+	};
 
-  svgString = svgString.replace(hrefPattern, replaceRefs)
-  svgString = svgString.replace(urlPattern, replaceRefs)
-  svgString = svgString.replace(maskPattern, replaceRefs)
+	result = result.replace(hrefPattern, replaceRefs);
+	result = result.replace(urlPattern, replaceRefs);
+	result = result.replace(maskPattern, replaceRefs);
 
-  return svgString
+	return result;
 }
 ---
 

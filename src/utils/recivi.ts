@@ -1,29 +1,29 @@
 import type {
-  RoleLocation,
-  RoleType,
-  Url,
-  Skill,
-  Address,
-  Cert,
-} from '@recivi/schema'
+	Address,
+	Cert,
+	RoleLocation,
+	RoleType,
+	Skill,
+	Url,
+} from "@recivi/schema";
 
 const ROLE_TYPE_DISPLAYS = {
-  contract: 'Contract',
-  foss: 'FOSS',
-  'full-time': 'Full-time',
-  internship: 'Internship',
-  'part-time': 'Part-time',
-  freelance: 'Freelance',
-  temp: 'Temporary',
-  volunteer: 'Volunteer',
-  other: 'Other',
-} as const
+	contract: "Contract",
+	foss: "FOSS",
+	"full-time": "Full-time",
+	internship: "Internship",
+	"part-time": "Part-time",
+	freelance: "Freelance",
+	temp: "Temporary",
+	volunteer: "Volunteer",
+	other: "Other",
+} as const;
 
 const ROLE_LOCATION_DISPLAY = {
-  remote: 'Remote',
-  onsite: 'On-site',
-  hybrid: 'Hybrid',
-} as const
+	remote: "Remote",
+	onsite: "On-site",
+	hybrid: "Hybrid",
+} as const;
 
 /**
  * Get the display name for a given role type code.
@@ -32,7 +32,7 @@ const ROLE_LOCATION_DISPLAY = {
  * @returns the display name for the role type
  */
 export function roleTypeDisplay(roleType: RoleType): string {
-  return ROLE_TYPE_DISPLAYS[roleType]
+	return ROLE_TYPE_DISPLAYS[roleType];
 }
 
 /**
@@ -42,14 +42,14 @@ export function roleTypeDisplay(roleType: RoleType): string {
  * @returns the display name for the role location
  */
 export function roleLocationDisplay(roleLocation: RoleLocation): string {
-  return ROLE_LOCATION_DISPLAY[roleLocation]
+	return ROLE_LOCATION_DISPLAY[roleLocation];
 }
 
 /**
  * Convert a `Url` object into a string. Récivi URLs can be
  */
 export function urlToDest(url: Url): string {
-  return typeof url === 'object' && 'dest' in url ? url.dest : url
+	return typeof url === "object" && "dest" in url ? url.dest : url;
 }
 
 /**
@@ -61,9 +61,9 @@ export function urlToDest(url: Url): string {
  * @returns the flag emoji
  */
 function countryCodeDisplay(countryCode: string): string {
-  return countryCode
-    .toUpperCase()
-    .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
+	return countryCode
+		.toUpperCase()
+		.replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397));
 }
 
 /**
@@ -73,14 +73,14 @@ function countryCodeDisplay(countryCode: string): string {
  * @returns the string representation of the address
  */
 export function addressDisplay(address: Address) {
-  let text = countryCodeDisplay(address.countryCode)
-  if (address.state) {
-    text = `${address.state}, ${text}`
-  }
-  if (address.city) {
-    text = `${address.city}, ${text}`
-  }
-  return text
+	let text = countryCodeDisplay(address.countryCode);
+	if (address.state) {
+		text = `${address.state}, ${text}`;
+	}
+	if (address.city) {
+		text = `${address.city}, ${text}`;
+	}
+	return text;
 }
 
 /**
@@ -91,15 +91,15 @@ export function addressDisplay(address: Address) {
  * @returns the string representation of the skill and all its sub-skills
  */
 export function skillDisplay(skill: Skill): string {
-  if (typeof skill === 'string') {
-    return skill
-  }
-  const { name, subSkills } = skill
-  let output = name
-  if (subSkills?.length) {
-    output = `${output} (+ ${subSkills.map(skillDisplay).join(', ')})`
-  }
-  return output
+	if (typeof skill === "string") {
+		return skill;
+	}
+	const { name, subSkills } = skill;
+	let output = name;
+	if (subSkills?.length) {
+		output = `${output} (+ ${subSkills.map(skillDisplay).join(", ")})`;
+	}
+	return output;
 }
 
 /**
@@ -111,11 +111,11 @@ export function skillDisplay(skill: Skill): string {
  * @returns the string representation of the certificate
  */
 export function certDisplay(cert: Cert): string {
-  let output = cert.shortName ?? cert.name
-  if (cert.field) {
-    output = `${output} (${cert.field})`
-  }
-  return output
+	let output = cert.shortName ?? cert.name;
+	if (cert.field) {
+		output = `${output} (${cert.field})`;
+	}
+	return output;
 }
 
 /**
@@ -126,10 +126,10 @@ export function certDisplay(cert: Cert): string {
  * @returns the human-readable textual representation
  */
 export function labelsDisplay(labels: string[]): string {
-  return labels
-    ?.map(
-      (label, idx) =>
-        `${idx === 0 ? 'a ' : idx === labels.length - 1 ? ' and ' : ', '}${label}`
-    )
-    .join('')
+	return labels
+		?.map(
+			(label, idx) =>
+				`${idx === 0 ? "a " : idx === labels.length - 1 ? " and " : ", "}${label}`,
+		)
+		.join("");
 }

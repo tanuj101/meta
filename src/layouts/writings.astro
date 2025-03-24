@@ -11,31 +11,31 @@
  * - default slot for the right pane content
  */
 
-import { getEntry } from 'astro:content'
+import { getEntry } from "astro:content";
 
-import ScreenLayout from '@/layouts/screen.astro'
+import ScreenLayout from "@/layouts/screen.astro";
 
-import Meta from '@/components/Meta.astro'
-import Table from '@/components/Table.astro'
-import Icon from '@/components/Icon.astro'
+import Icon from "@/components/Icon.astro";
+import Meta from "@/components/Meta.astro";
+import Table from "@/components/Table.astro";
 
-import { Content as WritingsIndex } from '@/pages/writings/_index.mdx'
+import { Content as WritingsIndex } from "@/pages/writings/_index.mdx";
 
-import { getPosts, getCategories } from '@/utils/collections'
-import { postColumns, getPostsData } from '@/models/table'
+import { getPostsData, postColumns } from "@/models/table";
+import { getCategories, getPosts } from "@/utils/collections";
 
 // Forward all props to the parent layout `MainLayout`.
-const attrs = Astro.props
+const attrs = Astro.props;
 
-const id = 'writings'
-const metadata = (await getEntry('pages', id))?.data
+const id = "writings";
+const metadata = (await getEntry("pages", id))?.data;
 
-const hasContent = Astro.slots.has('default')
+const hasContent = Astro.slots.has("default");
 
-const posts = await getPosts()
-const postsData = getPostsData(posts)
+const posts = await getPosts();
+const postsData = getPostsData(posts);
 
-const categories = await getCategories()
+const categories = await getCategories();
 ---
 
 <ScreenLayout {...attrs}>
@@ -99,7 +99,7 @@ const categories = await getCategories()
         )
       }
     </div>
-
+    <!-- Write about SVG fk ups -->
     <div class="cntnr mx-auto">
       <h2 class="hhr text-primary">Posts</h2>
     </div>

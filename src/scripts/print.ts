@@ -1,10 +1,10 @@
-import { join, resolve } from 'node:path'
+import { join, resolve } from "node:path";
 
-import chalk from 'chalk'
-import puppeteer from 'puppeteer'
+import chalk from "chalk";
+import puppeteer from "puppeteer";
 
-const projectRoot = resolve(import.meta.filename, '../../..')
-const pdfUrl = join(projectRoot, 'dist/resume.pdf')
+const projectRoot = resolve(import.meta.filename, "../../..");
+const pdfUrl = join(projectRoot, "dist/resume.pdf");
 
 /**
  * Returns the current time in %H:%M:%S format, which is the format used
@@ -13,8 +13,8 @@ const pdfUrl = join(projectRoot, 'dist/resume.pdf')
  * @returns the current time formatted as %H:%M:%S
  */
 function timestamp() {
-  const timestamp = new Date().toLocaleTimeString('en-US', { hour12: false })
-  return chalk.dim(timestamp)
+	const timestamp = new Date().toLocaleTimeString("en-US", { hour12: false });
+	return chalk.dim(timestamp);
 }
 
 /**
@@ -22,24 +22,26 @@ function timestamp() {
  * the page to a PDF file inside the `dist/` directory.
  */
 async function printToPdf() {
-  const browser = await puppeteer.launch({
-    // browser: 'firefox',
-    // headless: false
-  })
-  const page = await browser.newPage()
-  await page.goto('http://localhost:4322/resume/pdf', {
-    waitUntil: 'networkidle0',
-  })
-  await page.pdf({
-    path: pdfUrl,
-    format: 'A4',
-    margin: { top: 0, right: 0, bottom: 0, left: 0 }, // Page already has margins.
-    printBackground: true, // Divider lines use background colors.
-  })
-  await browser.close()
+	const browser = await puppeteer.launch({
+		// browser: 'firefox',
+		// headless: false
+	});
+	const page = await browser.newPage();
+	await page.goto("http://localhost:4322/resume/pdf", {
+		waitUntil: "networkidle0",
+	});
+	await page.pdf({
+		path: pdfUrl,
+		format: "A4",
+		margin: { top: 0, right: 0, bottom: 0, left: 0 }, // Page already has margins.
+		printBackground: true, // Divider lines use background colors.
+	});
+	await browser.close();
 }
 
-console.log(chalk.green.inverse(' building résumé PDF '))
-console.log(`${timestamp()} ${chalk.blue('[print]')} Building PDF...`)
-await printToPdf()
-console.log(`${timestamp()} ${chalk.blue('[print]')} ${chalk.green('✓ built')}`)
+console.log(chalk.green.inverse(" building résumé PDF "));
+console.log(`${timestamp()} ${chalk.blue("[print]")} Building PDF...`);
+await printToPdf();
+console.log(
+	`${timestamp()} ${chalk.blue("[print]")} ${chalk.green("✓ built")}`,
+);

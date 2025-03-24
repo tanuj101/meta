@@ -1,16 +1,16 @@
 ---
-import Link from '@/components/Link.astro'
-import IconName from '@/components/IconName.astro'
-import TimePeriod from '@/components/TimePeriod.astro'
+import IconName from "@/components/IconName.astro";
+import Link from "@/components/Link.astro";
+import TimePeriod from "@/components/TimePeriod.astro";
 
-import type { Org } from '@/models/recivi'
+import type { Org } from "@/models/recivi";
 
-import { epics } from '@/stores/recivi'
+import { epics } from "@/stores/recivi";
 
 interface Props {
-  org: Org
+	org: Org;
 }
-const { org } = Astro.props
+const { org } = Astro.props;
 ---
 
 <div class="border-b px-4 py-2">
