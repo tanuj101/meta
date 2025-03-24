@@ -4,7 +4,12 @@ import Link from "@/components/Link.astro";
 import TimePeriod from "@/components/TimePeriod.astro";
 
 import type { Org } from "@/models/recivi";
-import { addressDisplay, roleTypeDisplay, urlToDest } from "@/utils/recivi";
+import {
+	addressDisplay,
+	roleLocationDisplay,
+	roleTypeDisplay,
+	urlToDest,
+} from "@/utils/recivi";
 
 interface Props {
 	org: Org;
@@ -29,19 +34,31 @@ const { org } = Astro.props;
       )
     }
   </div>
-  {
-    org.url && (
-      <Link
-        url={org.url}
-        class="font-mono text-sm text-subtle">
-        {urlToDest(org.url)}
-      </Link>
-    )
-  }
+  <div class="flex" class:list={[
+    {
+      "justify-between": org.url,
+      "justify-end": !org.url,
+    }
+  ]}>
+    {
+      org.url && (
+        <Link
+          url={org.url}
+          class="font-mono text-sm text-subtle">
+          {urlToDest(org.url)}
+        </Link>
+      )
+    }
+    <span class="text-subtle">
+      {
+        roleLocationDisplay(org.roles[0]?.location || 'remote')
+      }
+    </span>
+  </div>
   {
     org.summary && (
       <p
-        class="mb-4 mt-1"
+        class="mb-2 mt-1"
         set:html={org.summary}
       />
     )
@@ -51,7 +68,7 @@ const { org } = Astro.props;
       org.roles
         .filter((role) => role.tags?.includes('resume_pdf'))
         .map((role) => (
-          <li class="mb-4 last:mb-0">
+          <li class="mb-2 last:mb-0">
             <div class="flex items-center justify-between">
               <h4 class="font-medium">
                 {role.name}
