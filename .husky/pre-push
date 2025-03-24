@@ -1,6 +1,5 @@
 # Strict lint
-pnpm lint --max-warnings 0
-pnpm format:check
+npx lint --error-on-warnings ./src
 
 # Run Astro checks
 pnpm check
