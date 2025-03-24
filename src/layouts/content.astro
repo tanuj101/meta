@@ -14,16 +14,16 @@
  * - default slot for the main content
  */
 
-import type { CollectionEntry } from 'astro:content'
+import type { CollectionEntry } from "astro:content";
 
-import ScreenLayout from '@/layouts/screen.astro'
+import ScreenLayout from "@/layouts/screen.astro";
 
-import Meta from '@/components/Meta.astro'
+import Meta from "@/components/Meta.astro";
 
 interface Props {
-  frontmatter: CollectionEntry<'pages'>['data'] & { file: string; url: string }
+	frontmatter: CollectionEntry<"pages">["data"] & { file: string; url: string };
 }
-const { frontmatter, ...attrs } = Astro.props
+const { frontmatter, ...attrs } = Astro.props;
 ---
 
 <ScreenLayout {...attrs}>

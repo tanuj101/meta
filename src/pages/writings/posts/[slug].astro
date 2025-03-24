@@ -1,51 +1,51 @@
 ---
-import { render, type CollectionEntry } from 'astro:content'
+import { type CollectionEntry, render } from "astro:content";
 
-import ScreenLayout from '@/layouts/screen.astro'
+import ScreenLayout from "@/layouts/screen.astro";
 
-import Meta from '@/components/Meta.astro'
-import Link from '@/components/Link.astro'
-import DateComponent from '@/components/Date.astro'
-import Table from '@/components/Table.astro'
-import TocNode from '@/components/TocNode.astro'
+import DateComponent from "@/components/Date.astro";
+import Link from "@/components/Link.astro";
+import Meta from "@/components/Meta.astro";
+import Table from "@/components/Table.astro";
+import TocNode from "@/components/TocNode.astro";
 
-import { getPosts } from '@/utils/collections'
-import { getModDate } from '@/utils/mod_date'
-import { buildTree } from '@/utils/toc_tree'
-import { postColumns, getPostsData } from '@/models/table'
+import { getPostsData, postColumns } from "@/models/table";
+import { getPosts } from "@/utils/collections";
+import { getModDate } from "@/utils/mod_date";
+import { buildTree } from "@/utils/toc_tree";
 
 export async function getStaticPaths() {
-  const posts = await getPosts()
-  return posts.map((post) => ({
-    params: {
-      slug: post.id.substring(5),
-    },
-    props: {
-      post,
-    },
-  }))
+	const posts = await getPosts();
+	return posts.map((post) => ({
+		params: {
+			slug: post.id.substring(5),
+		},
+		props: {
+			post,
+		},
+	}));
 }
 
 interface Props {
-  post: CollectionEntry<'posts'>
+	post: CollectionEntry<"posts">;
 }
-const { post } = Astro.props
+const { post } = Astro.props;
 
-const { Content, headings } = await render(post)
-const rootHeading = buildTree(headings)
-const modDate = getModDate(post.id)
+const { Content, headings } = await render(post);
+const rootHeading = buildTree(headings);
+const modDate = getModDate(post.id);
 
-const allPosts = await getPosts()
+const allPosts = await getPosts();
 
 const seriesPosts = allPosts.filter(
-  (item) => item.data.series === post.data.series
-)
-const seriesPostsData = getPostsData(seriesPosts)
+	(item) => item.data.series === post.data.series,
+);
+const seriesPostsData = getPostsData(seriesPosts);
 
 const metadata = {
-  title: `Post: ${post.data.title}`,
-  description: post.data.description,
-}
+	title: `Post: ${post.data.title}`,
+	description: post.data.description,
+};
 ---
 
 <ScreenLayout>

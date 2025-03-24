@@ -1,15 +1,15 @@
 ---
-import Link from '@/components/Link.astro'
-import IconName from '@/components/IconName.astro'
-import TimePeriod from '@/components/TimePeriod.astro'
+import IconName from "@/components/IconName.astro";
+import Link from "@/components/Link.astro";
+import TimePeriod from "@/components/TimePeriod.astro";
 
-import type { Org } from '@/models/recivi'
-import { urlToDest, addressDisplay, roleTypeDisplay } from '@/utils/recivi'
+import type { Org } from "@/models/recivi";
+import { addressDisplay, roleTypeDisplay, urlToDest } from "@/utils/recivi";
 
 interface Props {
-  org: Org
+	org: Org;
 }
-const { org } = Astro.props
+const { org } = Astro.props;
 ---
 
 <li class="mb-3 border-b pb-3 last:mb-0 last:border-none last:pb-0">

@@ -8,33 +8,36 @@
  * platform.
  */
 
-import Icon from '@/components/Icon.astro'
-import Link from '@/components/Link.astro'
+import Icon from "@/components/Icon.astro";
+import Link from "@/components/Link.astro";
 
-import { recivi } from '@/stores/recivi'
+import { recivi } from "@/stores/recivi";
 
-const { contact: { emails = [], phones = [] } = {}, profiles = [] } = recivi.bio
+const {
+	contact: { emails = [], phones = [] } = {},
+	profiles = [],
+} = recivi.bio;
 
 const items = [
-  emails.map((email) => ({
-    icon: Object.freeze({ name: 'mail', source: 'lucide' }),
-    name: 'Email',
-    url: `mailto:${email}`,
-    text: email,
-  })),
-  phones.map((phone) => ({
-    icon: Object.freeze({ name: 'phone', source: 'lucide' }),
-    name: 'Phone',
-    url: `tel:+${phone.countryCode}${phone.number}`,
-    text: `+${phone.countryCode} ${phone.number}`,
-  })),
-  profiles.map((profile) => ({
-    icon: Object.freeze({ name: profile.site.id, source: 'simple_icons' }),
-    name: profile.site.name,
-    url: 'url' in profile ? profile.url : null,
-    text: 'username' in profile ? profile.username : profile.site.name,
-  })),
-].flat()
+	emails.map((email) => ({
+		icon: Object.freeze({ name: "mail", source: "lucide" }),
+		name: "Email",
+		url: `mailto:${email}`,
+		text: email,
+	})),
+	phones.map((phone) => ({
+		icon: Object.freeze({ name: "phone", source: "lucide" }),
+		name: "Phone",
+		url: `tel:+${phone.countryCode}${phone.number}`,
+		text: `+${phone.countryCode} ${phone.number}`,
+	})),
+	profiles.map((profile) => ({
+		icon: Object.freeze({ name: profile.site.id, source: "simple_icons" }),
+		name: profile.site.name,
+		url: "url" in profile ? profile.url : null,
+		text: "username" in profile ? profile.username : profile.site.name,
+	})),
+].flat();
 ---
 
 <ul class="columns-2 pdf:flex pdf:justify-between">

@@ -1,25 +1,25 @@
 ---
-import type { Date as RcvDate } from '@recivi/schema'
+import type { Date as RcvDate } from "@recivi/schema";
 
-import { dateReadable, dateDisplay } from '@/utils/date_fmt'
+import { dateDisplay, dateReadable } from "@/utils/date_fmt";
 
 interface Props {
-  start?: RcvDate
-  end?: RcvDate
+	start?: RcvDate;
+	end?: RcvDate;
 }
-const { start, end } = Astro.props
+const { start, end } = Astro.props;
 
-const startDisplay = start && dateDisplay(start)
-const startReadable = start && dateReadable(start)
+const startDisplay = start && dateDisplay(start);
+const startReadable = start && dateReadable(start);
 
-const endDisplay = end && dateDisplay(end)
-const endReadable = end && dateReadable(end)
+const endDisplay = end && dateDisplay(end);
+const endReadable = end && dateReadable(end);
 ---
 
 <span class="whitespace-nowrap font-mono">
   <span
     set:html={startDisplay}
-  title={startReadable}
+    title={startReadable}
   />
   &ndash;
   {

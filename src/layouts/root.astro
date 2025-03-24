@@ -10,15 +10,15 @@
  * - default slot for the main content
  */
 
-import type { ClassList } from '@/types/class_list'
+import type { ClassList } from "@/types/class_list";
 
-import '@/styles/colors.css'
+import "@/styles/colors.css";
 
 interface Props {
-  rootClasses?: ClassList
-  bodyClasses?: ClassList
+	rootClasses?: ClassList;
+	bodyClasses?: ClassList;
 }
-const { rootClasses = [], bodyClasses = [] } = Astro.props
+const { rootClasses = [], bodyClasses = [] } = Astro.props;
 ---
 
 <html

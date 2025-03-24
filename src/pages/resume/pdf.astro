@@ -1,22 +1,22 @@
 ---
-import RootLayout from '@/layouts/root.astro'
+import RootLayout from "@/layouts/root.astro";
 
-import Link from '@/components/Link.astro'
-import ContactList from '@/components/ContactList.astro'
-import EpicEntry from '@/components/EpicEntry.astro'
-import OrgEntry from '@/components/OrgEntry.astro'
+import ContactList from "@/components/ContactList.astro";
+import EpicEntry from "@/components/EpicEntry.astro";
+import Link from "@/components/Link.astro";
+import OrgEntry from "@/components/OrgEntry.astro";
 
-import { recivi, orgs, epics } from '@/stores/recivi'
-import { site } from '@/stores/site'
-import { getPageTitle } from '@/utils/meta'
-import { skillDisplay } from '@/utils/recivi'
+import { epics, orgs, recivi } from "@/stores/recivi";
+import { site } from "@/stores/site";
+import { getPageTitle } from "@/utils/meta";
+import { skillDisplay } from "@/utils/recivi";
 
-import '@/styles/print.css'
+import "@/styles/print.css";
 
 // Forward all props to the parent layout `RootLayout`.
-const { ...attrs } = Astro.props
+const { ...attrs } = Astro.props;
 
-const pageTitle = getPageTitle('Résumé PDF')
+const pageTitle = getPageTitle("Résumé PDF");
 ---
 
 <style type="text/css" media="print">

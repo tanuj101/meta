@@ -22,17 +22,17 @@
  * - default slot for the main content
  */
 
-import RootLayout from '@/layouts/root.astro'
+import RootLayout from "@/layouts/root.astro";
 
-import SiteHeader from '@/components/SiteHeader.astro'
-import SiteFooter from '@/components/SiteFooter.astro'
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
 
-import '@/styles/screen.css'
+import "@/styles/screen.css";
 
 // Forward all props to the parent layout `RootLayout`.
-const attrs = Astro.props
+const attrs = Astro.props;
 
-const hasSecondaryContent = Astro.slots.has('secondary')
+const hasSecondaryContent = Astro.slots.has("secondary");
 ---
 
 <RootLayout

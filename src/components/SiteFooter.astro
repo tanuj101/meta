@@ -1,15 +1,14 @@
 ---
-import Breakpoint from '@/components/Breakpoint.astro'
-import Icon from '@/components/Icon.astro'
-import IconName from '@/components/IconName.astro'
+import Icon from "@/components/Icon.astro";
+import IconName from "@/components/IconName.astro";
 
-import type { ClassList } from '@/types/class_list'
-import { site } from '@/stores/site'
+import { site } from "@/stores/site";
+import type { ClassList } from "@/types/class_list";
 
 interface Props {
-  classes?: ClassList
+	classes?: ClassList;
 }
-const { classes = [] } = Astro.props
+const { classes = [] } = Astro.props;
 ---
 
 <footer

@@ -6,9 +6,9 @@
  * @returns the hash as a number
  */
 export function getHash(text: string, len: number): number {
-  let hash = 0
-  for (let i = 0; i < text.length; i++) {
-    hash = (hash * 31 + text.charCodeAt(i)) >>> 0
-  }
-  return hash % len
+	let hash = 0;
+	for (let i = 0; i < text.length; i++) {
+		hash = (hash * 31 + text.charCodeAt(i)) >>> 0;
+	}
+	return hash % len;
 }

@@ -14,140 +14,137 @@
 
 /* Apply universal styles, kind of like an anti-reset. */
 @layer base {
+	.conceal {
+		@apply absolute h-0 w-0;
+	}
 
-  .conceal {
-    @apply w-0 h-0 absolute;
-  }
-  
-  *:focus-visible {
-    @apply outline-none ring-2 ring-primary;
-  }
+	*:focus-visible {
+		@apply outline-none ring-2 ring-primary;
+	}
 
-  
-  /* Add vertical margins to block components. */
-  html {
-    scrollbar-gutter: stable;
-    scroll-behavior: smooth;
-  }
+	/* Add vertical margins to block components. */
+	html {
+		scrollbar-gutter: stable;
+		scroll-behavior: smooth;
+	}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  table {
-    @apply my-4;
-  }
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	table {
+		@apply my-4;
+	}
 
-  /* Top level headings should be in bold font... */
+	/* Top level headings should be in bold font... */
 
-  h1 {
-    @apply font-bold;
-  }
+	h1 {
+		@apply font-bold;
+	}
 
-  h2 {
-    @apply text-[1.05rem];
-  }
+	h2 {
+		@apply text-[1.05rem];
+	}
 
-  /* ...but for everything else, bold is too heavy. */
+	/* ...but for everything else, bold is too heavy. */
 
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  strong,
-  th {
-    @apply font-medium;
-  }
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	strong,
+	th {
+		@apply font-medium;
+	}
 
-  /* Element specific styles */
+	/* Element specific styles */
 
-  a {
-    @apply underline decoration-blue visited:decoration-mauve hover:decoration-wavy;
-  }
+	a {
+		@apply underline decoration-blue visited:decoration-mauve hover:decoration-wavy;
+	}
 
-  a[data-rel='parent'] {
-    /* Parent links */
-    @apply before:mx-0.5 before:inline-block before:text-blue before:transition-transform before:content-["←"] visited:before:text-mauve hover:before:-translate-x-1;
-  }
+	a[data-rel="parent"] {
+		/* Parent links */
+		@apply before:mx-0.5 before:inline-block before:text-blue before:transition-transform before:content-["←"] visited:before:text-mauve hover:before:-translate-x-1;
+	}
 
-  a[href$='.pdf'],
-  a[href^='http'],
-  a[href^='mailto:'],
-  a[href^='tel:'] {
-    /* Special links */
-    @apply after:mx-0.5 after:inline-block after:text-blue after:transition-transform visited:after:text-mauve hover:after:transform;
-  }
+	a[href$=".pdf"],
+	a[href^="http"],
+	a[href^="mailto:"],
+	a[href^="tel:"] {
+		/* Special links */
+		@apply after:mx-0.5 after:inline-block after:text-blue after:transition-transform visited:after:text-mauve hover:after:transform;
+	}
 
-  /* Download links */
-  a[href$='.pdf'] {
-    @apply after:content-["↓"] hover:after:translate-y-1;
-  }
+	/* Download links */
+	a[href$=".pdf"] {
+		@apply after:content-["↓"] hover:after:translate-y-1;
+	}
 
-  a[href^='http'] {
-    /* External links */
-    /* IDEA: ⤴ is another nice arrow that conveys a similar idea to ↗. */
-    @apply after:content-["↗"] hover:after:-translate-y-1 hover:after:translate-x-1;
-  }
+	a[href^="http"] {
+		/* External links */
+		/* IDEA: ⤴ is another nice arrow that conveys a similar idea to ↗. */
+		@apply after:content-["↗"] hover:after:-translate-y-1 hover:after:translate-x-1;
+	}
 
-  a[href^='mailto:'],
-  a[href^='tel:'] {
-    /* Non-web links */
-    @apply after:content-["→"] hover:after:translate-x-1;
-  }
+	a[href^="mailto:"],
+	a[href^="tel:"] {
+		/* Non-web links */
+		@apply after:content-["→"] hover:after:translate-x-1;
+	}
 
-  h1 {
-    @apply text-3xl text-primary sm:text-5xl;
-  }
+	h1 {
+		@apply text-3xl text-primary sm:text-5xl;
+	}
 
-  table {
-    @apply w-full;
-  }
+	table {
+		@apply w-full;
+	}
 
-  th {
-    @apply border-y bg-surface0 text-left;
-  }
+	th {
+		@apply border-y bg-surface0 text-left;
+	}
 
-  th,
-  td {
-    @apply px-2 py-0.5 first:pl-4 last:pr-4;
-  }
+	th,
+	td {
+		@apply px-2 py-0.5 first:pl-4 last:pr-4;
+	}
 
-  code {
-    @apply px-1 py-0.5 [:not(pre)>&]:border [:not(pre)>&]:bg-surface0;
-  }
+	code {
+		@apply px-1 py-0.5 [:not(pre)>&]:border [:not(pre)>&]:bg-surface0;
+	}
 }
 
 @layer components {
-  .cntnr {
-    @apply w-full px-4 mx-safe sm:max-w-screen-sm;
-  }
+	.cntnr {
+		@apply w-full px-4 mx-safe sm:max-w-screen-sm;
+	}
 
-  .hhr-core {
-    @apply flex items-center gap-2;
-  }
+	.hhr-core {
+		@apply flex items-center gap-2;
+	}
 
-  .hhrs {
-    /* Uses `-ms-4` to reverse the padding applied by the container. */
-    @apply hhr-core -ms-4 before:h-px before:w-2 before:bg-peach;
-  }
+	.hhrs {
+		/* Uses `-ms-4` to reverse the padding applied by the container. */
+		@apply hhr-core -ms-4 before:h-px before:w-2 before:bg-peach;
+	}
 
-  .hhre {
-    /* Uses `-me-4` to reverse the padding applied by the container. */
-    @apply hhr-core -me-4 after:h-px after:w-2 after:flex-grow after:bg-surface1;
-  }
+	.hhre {
+		/* Uses `-me-4` to reverse the padding applied by the container. */
+		@apply hhr-core -me-4 after:h-px after:w-2 after:flex-grow after:bg-surface1;
+	}
 
-  .hhr {
-    @apply hhrs hhre;
-  }
+	.hhr {
+		@apply hhrs hhre;
+	}
 }
 
 @layer utilities {
-  .clip-0 {
-    clip-path: inset(0);
-  }
+	.clip-0 {
+		clip-path: inset(0);
+	}
 }
-

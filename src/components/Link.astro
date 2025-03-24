@@ -1,16 +1,16 @@
 ---
-import type { Url } from '@recivi/schema'
-import type { HTMLAttributes } from 'astro/types'
+import type { Url } from "@recivi/schema";
+import type { HTMLAttributes } from "astro/types";
 
-import { urlToDest } from '@/utils/recivi'
+import { urlToDest } from "@/utils/recivi";
 
-interface Props extends HTMLAttributes<'a'> {
-  url: Url
+interface Props extends HTMLAttributes<"a"> {
+	url: Url;
 }
-const { url, ...attrs } = Astro.props
+const { url, ...attrs } = Astro.props;
 
-const href = urlToDest(url)
-const title = typeof url === 'object' && 'label' in url ? url.label : undefined
+const href = urlToDest(url);
+const title = typeof url === "object" && "label" in url ? url.label : undefined;
 ---
 
 <a

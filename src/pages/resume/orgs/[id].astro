@@ -1,36 +1,36 @@
 ---
-import ScreenLayout from '@/layouts/screen.astro'
+import ScreenLayout from "@/layouts/screen.astro";
 
-import IconName from '@/components/IconName.astro'
-import Meta from '@/components/Meta.astro'
-import TimePeriod from '@/components/TimePeriod.astro'
+import IconName from "@/components/IconName.astro";
+import Meta from "@/components/Meta.astro";
+import TimePeriod from "@/components/TimePeriod.astro";
 
-import type { Org } from '@/models/recivi'
-import { orgs } from '@/stores/recivi'
-import { addressDisplay } from '@/utils/recivi'
-import { roleTypeDisplay, roleLocationDisplay } from '@/utils/recivi'
+import type { Org } from "@/models/recivi";
+import { orgs } from "@/stores/recivi";
+import { addressDisplay } from "@/utils/recivi";
+import { roleLocationDisplay, roleTypeDisplay } from "@/utils/recivi";
 
 export async function getStaticPaths() {
-  return orgs.map((org) => ({
-    params: {
-      id: org.id,
-    },
-    props: {
-      org,
-    },
-  }))
+	return orgs.map((org) => ({
+		params: {
+			id: org.id,
+		},
+		props: {
+			org,
+		},
+	}));
 }
 
 interface Props {
-  org: Org
+	org: Org;
 }
-const { org } = Astro.props
+const { org } = Astro.props;
 
 const metadata = {
-  title: `Org: ${org.name}`,
-  description: `Know more about the org ${org.name} and my work there.`,
-  banRobots: true,
-}
+	title: `Org: ${org.name}`,
+	description: `Know more about the org ${org.name} and my work there.`,
+	banRobots: true,
+};
 ---
 
 <ScreenLayout>

@@ -1,20 +1,20 @@
 ---
-import type { Url } from '@recivi/schema'
+import type { Url } from "@recivi/schema";
 
-import Icon from '@/components/Icon.astro'
-import Link from '@/components/Link.astro'
+import Icon from "@/components/Icon.astro";
+import Link from "@/components/Link.astro";
 
 interface Props {
-  id?: string | undefined
-  name: string
-  /**
-   * If you don't wish the component to be a link, don't pass the `url` prop or
-   * pass `undefined`.
-   */
-  url?: Url | undefined
-  target?: HTMLAnchorElement['target']
+	id?: string | undefined;
+	name: string;
+	/**
+	 * If you don't wish the component to be a link, don't pass the `url` prop or
+	 * pass `undefined`.
+	 */
+	url?: Url | undefined;
+	target?: HTMLAnchorElement["target"];
 }
-let { id = undefined, name, url = undefined, target, ...attrs } = Astro.props
+let { id = undefined, name, url = undefined, target, ...attrs } = Astro.props;
 ---
 
 <span class="inline-block">

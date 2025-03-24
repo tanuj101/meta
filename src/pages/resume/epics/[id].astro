@@ -1,38 +1,38 @@
 ---
-import type { Tech } from '@recivi/schema'
+import type { Tech } from "@recivi/schema";
 
-import ScreenLayout from '@/layouts/screen.astro'
+import ScreenLayout from "@/layouts/screen.astro";
 
-import IconName from '@/components/IconName.astro'
-import Meta from '@/components/Meta.astro'
-import Link from '@/components/Link.astro'
+import IconName from "@/components/IconName.astro";
+import Link from "@/components/Link.astro";
+import Meta from "@/components/Meta.astro";
 
-import type { Epic } from '@/models/recivi'
-import { epics } from '@/stores/recivi'
-import { urlToDest } from '@/utils/recivi'
+import type { Epic } from "@/models/recivi";
+import { epics } from "@/stores/recivi";
+import { urlToDest } from "@/utils/recivi";
 
 export async function getStaticPaths() {
-  return epics.map((epic) => ({
-    params: {
-      id: epic.id,
-    },
-    props: {
-      epic,
-    },
-  }))
+	return epics.map((epic) => ({
+		params: {
+			id: epic.id,
+		},
+		props: {
+			epic,
+		},
+	}));
 }
 
 interface Props {
-  epic: Epic
+	epic: Epic;
 }
 
-const { epic } = Astro.props
+const { epic } = Astro.props;
 
 const metadata = {
-  title: `Epic: ${epic.name}`,
-  description: `Know about the epic ${epic.name} and my work on it.`,
-  banRobots: true,
-}
+	title: `Epic: ${epic.name}`,
+	description: `Know about the epic ${epic.name} and my work on it.`,
+	banRobots: true,
+};
 ---
 
 <ScreenLayout>
