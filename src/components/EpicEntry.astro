@@ -44,7 +44,7 @@ const { epic } = Astro.props;
   {
     epic.summary && (
       <p
-        class="mb-4 mt-1"
+        class="mb-2 mt-1"
         set:html={epic.summary}
       />
     )
@@ -54,7 +54,7 @@ const { epic } = Astro.props;
       epic.projects
         .filter((project) => project.tags?.includes('resume_pdf'))
         .map((project) => (
-          <li class="mb-4 last:mb-0">
+          <li class="mb-1 last:mb-0">
             <div class="flex items-center justify-between">
               <h4 class="font-medium">{project.name}</h4>
               <Fragment>
