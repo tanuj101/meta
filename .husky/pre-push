@@ -1,5 +1,5 @@
 # Strict lint
-npx lint --error-on-warnings ./src
+pnpx biome lint --error-on-warnings ./src
 
 # Run Astro checks
 pnpm check
