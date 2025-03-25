@@ -15,33 +15,20 @@ import type { ClassList } from "@/types/class_list";
 import "@/styles/colors.css";
 
 interface Props {
-	rootClasses?: ClassList;
-	bodyClasses?: ClassList;
+  rootClasses?: ClassList;
+  bodyClasses?: ClassList;
 }
 const { rootClasses = [], bodyClasses = [] } = Astro.props;
 ---
 
-<html
-  lang="en"
-  class="h-full bg-default text-default"
-  class:list={rootClasses}>
+<html lang="en" class="h-full bg-default text-default" class:list={rootClasses}>
   <head>
     <meta charset="utf-8" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, viewport-fit=cover" />
 
-    <link
-      rel="preconnect"
-      href="https://rsms.me/"
-      crossorigin=""
-    />
-    <link
-      rel="stylesheet"
-      href="https://rsms.me/inter/inter.css"
-    />
+    <link rel="preconnect" href="https://rsms.me/" crossorigin="" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 
     <meta
       name="theme-color"
@@ -54,29 +41,74 @@ const { rootClasses = [], bodyClasses = [] } = Astro.props;
       media="(prefers-color-scheme: light)"
     />
 
+    <link rel="manifest" href="/site.webmanifest" />
     <link
-      rel="manifest"
-      href="/site.webmanifest"
+      rel="apple-touch-icon-precomposed"
+      sizes="57x57"
+      href="/apple-touch-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="/apple-touch-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="/apple-touch-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="/apple-touch-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="60x60"
+      href="/apple-touch-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="120x120"
+      href="/apple-touch-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="76x76"
+      href="/apple-touch-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="152x152"
+      href="/apple-touch-icon-152x152.png"
     />
     <link
       rel="icon"
-      href="/favicon.ico"
-      sizes="64x64"
+      type="image/png"
+      href="/favicon-196x196.png"
+      sizes="196x196"
     />
-    <link
-      rel="icon"
-      href="/icon.svg"
-      type="image/svg+xml"
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="msapplication-TileColor" content="#eff1f5" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta
+      name="msapplication-square150x150logo"
+      content="/mstile-150x150.png"
     />
-    <link
-      rel="apple-touch-icon"
-      href="/icon-512.png"
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta
+      name="msapplication-square310x310logo"
+      content="/mstile-310x310.png"
     />
 
-    <meta
-      name="generator"
-      content={Astro.generator}
-    />
+    <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+
+    <meta name="generator" content={Astro.generator} />
 
     <slot name="head" />
   </head>
@@ -88,6 +120,5 @@ const { rootClasses = [], bodyClasses = [] } = Astro.props;
     is:inline
     data-goatcounter="https://tanuj.goatcounter.com/count"
     async
-    src="https://gc.zgo.at/count.js"
-  ></script>
+    src="https://gc.zgo.at/count.js"></script>
 </html>
