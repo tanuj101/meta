@@ -44,10 +44,9 @@ interface Site {
 
 export const site: Site = {
 	baseUrl: "https://tanuj-nagpal.is-a.dev",
-	reciviUrl: "file://C:/Users/admin/projects/recivi/recivi.json",
-	// reciviUrl: import.meta.env.DEV
-	// 	? "file://C:/Users/admin/projects/recivi/recivi.json"
-	// 	: "https://raw.githubusercontent.com/tanuj101/recivi/refs/heads/main/recivi.json",
+	reciviUrl: import.meta.env.DEV
+		? "file://C:/Users/admin/projects/recivi/recivi.json"
+		: "https://raw.githubusercontent.com/tanuj101/recivi/refs/heads/main/recivi.json",
 	title: "@tanuj",
 	birthYear: 1999,
 	hobbyAge: 17,
