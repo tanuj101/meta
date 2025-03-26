@@ -9,6 +9,8 @@ import { rehypeTailwind } from "./src/plugins/rehype_tailwind";
 
 import { site } from "./src/stores/site";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
 	site: site.baseUrl,
@@ -34,5 +36,6 @@ export default defineConfig({
 		mdx(),
 		watchPlugins(),
 		alpinejs(),
+		sitemap(),
 	],
 });
