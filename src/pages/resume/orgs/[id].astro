@@ -11,41 +11,36 @@ import { addressDisplay } from "@/utils/recivi";
 import { roleLocationDisplay, roleTypeDisplay } from "@/utils/recivi";
 
 export async function getStaticPaths() {
-	return orgs.map((org) => ({
-		params: {
-			id: org.id,
-		},
-		props: {
-			org,
-		},
-	}));
+  return orgs.map((org) => ({
+    params: {
+      id: org.id,
+    },
+    props: {
+      org,
+    },
+  }));
 }
 
 interface Props {
-	org: Org;
+  org: Org;
 }
 const { org } = Astro.props;
 
 const metadata = {
-	title: `Org: ${org.name}`,
-	description: `Know more about the org ${org.name} and my work there.`,
-	banRobots: true,
+  title: `Org: ${org.name}`,
+  description: `Know more about the org ${org.name} and my work there.`,
+  banRobots: false,
 };
 ---
 
 <ScreenLayout>
-  <slot
-    name="head"
-    slot="head">
+  <slot name="head" slot="head">
     <Meta data={metadata} />
   </slot>
 
   <div class="cntnr mx-auto my-4">
     <h1 class="text-3xl text-primary sm:text-5xl">
-      <IconName
-        {...org}
-        target="_blank"
-      />
+      <IconName {...org} target="_blank" />
     </h1>
 
     {
@@ -68,15 +63,14 @@ const metadata = {
     {
       org.roles.map((role) => (
         <div>
-          <h2
-            id={role.id}
-            class="hhr text-primary">
+          <h2 id={role.id} class="hhr text-primary">
             <a
               href={`#${role.id}`}
-              class="text-[inherit] no-underline decoration-curr visited:text-[inherit] visited:decoration-curr hover:underline">
+              class="text-[inherit] no-underline decoration-curr visited:text-[inherit] visited:decoration-curr hover:underline"
+            >
               {role.name}
               {role.type &&
-                role.type !== 'full-time' &&
+                role.type !== "full-time" &&
                 `(${roleTypeDisplay(role.type)})`}
             </a>
           </h2>
@@ -101,10 +95,7 @@ const metadata = {
                 <dt class="text-subtle">Epics:</dt>
                 <dd class="flex gap-2">
                   {role.epics.map((epic) => (
-                    <IconName
-                      {...epic}
-                      url={`/resume/epics/${epic.id}`}
-                    />
+                    <IconName {...epic} url={`/resume/epics/${epic.id}`} />
                   ))}
                 </dd>
               </Fragment>
