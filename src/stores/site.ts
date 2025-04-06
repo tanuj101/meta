@@ -50,6 +50,6 @@ export const site: Site = {
 	title: "@tanuj",
 	birthYear: 1999,
 	hobbyAge: 17,
-	jobAge: 19,
+	jobAge: 21,
 	showCredit: false,
 };
