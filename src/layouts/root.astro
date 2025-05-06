@@ -9,7 +9,7 @@
  * - `head` for adding metadata to the page header
  * - default slot for the main content
  */
-
+import { ClientRouter } from "astro:transitions";
 import type { ClassList } from "@/types/class_list";
 
 import "@/styles/colors.css";
@@ -111,6 +111,7 @@ const { rootClasses = [], bodyClasses = [] } = Astro.props;
     <meta name="generator" content={Astro.generator} />
 
     <slot name="head" />
+    <ClientRouter />
   </head>
 
   <body class:list={bodyClasses}>
