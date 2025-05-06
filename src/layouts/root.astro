@@ -11,6 +11,7 @@
  */
 import { ClientRouter } from "astro:transitions";
 import type { ClassList } from "@/types/class_list";
+import LoadingIndicator from "astro-loading-indicator/component";
 
 import "@/styles/colors.css";
 
@@ -115,9 +116,9 @@ const { rootClasses = [], bodyClasses = [] } = Astro.props;
   </head>
 
   <body class:list={bodyClasses}>
+    <LoadingIndicator color="#8e3501" height="2.5px" />
     <slot />
-  </body>
-  <script
+  </body><script
     is:inline
     data-goatcounter="https://tanuj.goatcounter.com/count"
     async

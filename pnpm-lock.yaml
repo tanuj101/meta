@@ -58,6 +58,9 @@ importers:
       astro:
         specifier: ^5.1.4
         version: 5.5.3(@types/node@22.13.10)(jiti@1.21.7)(rollup@4.36.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0)
+      astro-loading-indicator:
+        specifier: ^0.7.0
+        version: 0.7.0(astro@5.5.3(@types/node@22.13.10)(jiti@1.21.7)(rollup@4.36.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0))
       chalk:
         specifier: ^5.3.0
         version: 5.4.1
@@ -899,6 +902,11 @@ packages:
   astring@1.9.0:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
+
+  astro-loading-indicator@0.7.0:
+    resolution: {integrity: sha512-oNSUYbHq8Aaol0zcVuBzGz+qrqKsviOvKl1xaaKo3DLkEef7HCzHQAgTgWv4lB1iYFWa5GaieQvlxBO4KjzKZg==}
+    peerDependencies:
+      astro: ^4.0.0 || ^5.0.0
 
   astro@5.5.3:
     resolution: {integrity: sha512-FvqIo5jkunP5R6FkY5vuFYElTOqjnazuiN0x/yf1F+nvedsGDemm5K7mS6RTmFVB291mE9WWn1AbuJsFWEcHgg==}
@@ -3873,6 +3881,10 @@ snapshots:
       tslib: 2.8.1
 
   astring@1.9.0: {}
+
+  astro-loading-indicator@0.7.0(astro@5.5.3(@types/node@22.13.10)(jiti@1.21.7)(rollup@4.36.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0)):
+    dependencies:
+      astro: 5.5.3(@types/node@22.13.10)(jiti@1.21.7)(rollup@4.36.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0)
 
   astro@5.5.3(@types/node@22.13.10)(jiti@1.21.7)(rollup@4.36.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0):
     dependencies:
