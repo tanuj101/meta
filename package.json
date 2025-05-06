@@ -30,6 +30,7 @@
 		"@vercel/og": "^0.6.4",
 		"alpinejs": "^3.14.7",
 		"astro": "^5.1.4",
+		"astro-loading-indicator": "^0.7.0",
 		"chalk": "^5.3.0",
 		"country-flag-icons": "^1.5.18",
 		"puppeteer": "^23.11.1",
