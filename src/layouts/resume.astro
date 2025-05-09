@@ -25,12 +25,12 @@ import Table from "@/components/Table.astro";
 import { Content as ResumeIndex } from "@/pages/resume/_index.mdx";
 
 import {
-	certColumns,
-	certData,
-	projectColumns,
-	projectData,
-	roleColumns,
-	roleData,
+  certColumns,
+  certData,
+  projectColumns,
+  projectData,
+  roleColumns,
+  roleData,
 } from "@/models/table";
 import { epics, institutes, orgs, recivi } from "@/stores/recivi";
 
@@ -44,9 +44,7 @@ const hasContent = Astro.slots.has("default");
 ---
 
 <ScreenLayout {...attrs}>
-  <slot
-    name="head"
-    slot="head">
+  <slot name="head" slot="head">
     <!--
     We render the résumé index metadata by default.
     Subpages can override this using the `head` slot.
@@ -63,30 +61,12 @@ const hasContent = Astro.slots.has("default");
     </div>
 
     <div class="cntnr">
-      <h2 class="hhr text-primary">Education</h2>
-    </div>
-    <div class="mb-4 w-full max-w-screen-lg">
-      <div class="hidden sm:block">
-        <Table
-          columns={certColumns}
-          data={certData}
-        />
-      </div>
-      <div class="sm:hidden">
-        {institutes.map((institute) => <InstituteCard {institute} />)}
-      </div>
-    </div>
-
-    <div class="cntnr">
       <h2 class="hhr text-primary">Roles</h2>
       <p>Click on an org (or epic) name to know more.</p>
     </div>
     <div class="mb-4 w-full max-w-screen-lg">
       <div class="hidden sm:block">
-        <Table
-          columns={roleColumns}
-          data={roleData}
-        />
+        <Table columns={roleColumns} data={roleData} />
       </div>
       <div class="sm:hidden">
         {orgs.map((org) => <OrgCard {org} />)}
@@ -99,10 +79,7 @@ const hasContent = Astro.slots.has("default");
     </div>
     <div class="mb-4 w-full max-w-screen-lg">
       <div class="hidden sm:block">
-        <Table
-          columns={projectColumns}
-          data={projectData}
-        />
+        <Table columns={projectColumns} data={projectData} />
       </div>
       <div class="sm:hidden">
         {epics.map((epic) => <EpicCard {epic} />)}
@@ -126,8 +103,20 @@ const hasContent = Astro.slots.has("default");
         ) : undefined
       }
     </div>
+
+    <div class="cntnr">
+      <h2 class="hhr text-primary">Education</h2>
+    </div>
+    <div class="mb-4 w-full max-w-screen-lg">
+      <div class="hidden sm:block">
+        <Table columns={certColumns} data={certData} />
+      </div>
+      <div class="sm:hidden">
+        {institutes.map((institute) => <InstituteCard {institute} />)}
+      </div>
+    </div>
   </article>
 
   <!-- content for the right pane -->
-  <slot slot={hasContent ? 'secondary' : undefined} />
+  <slot slot={hasContent ? "secondary" : undefined} />
 </ScreenLayout>

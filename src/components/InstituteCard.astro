@@ -6,12 +6,12 @@ import type { Institute } from "@/models/recivi";
 import { certDisplay } from "@/utils/recivi";
 
 interface Props {
-	institute: Institute;
+  institute: Institute;
 }
 const { institute } = Astro.props;
 ---
 
-<div class="border-b px-4 py-2">
+<div class="px-4 py-2">
   <div class="flex justify-between">
     <strong>{institute.name}</strong>
     {institute.url && <Link url={institute.url}>website</Link>}
