@@ -118,9 +118,16 @@ const { rootClasses = [], bodyClasses = [] } = Astro.props;
   <body class:list={bodyClasses}>
     <LoadingIndicator color="#8e3501" height="2.5px" />
     <slot />
-  </body><script
-    is:inline
-    data-goatcounter="https://tanuj.goatcounter.com/count"
-    async
-    src="https://gc.zgo.at/count.js"></script>
+    <script
+      is:inline
+      data-auto-track="false"
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="c4984428-ee5c-48bf-bc5e-49bf0932b436"></script>
+    <script>
+      document.addEventListener("astro:page-load", () => {
+        window.umami.track();
+      });
+    </script>
+  </body>
 </html>
