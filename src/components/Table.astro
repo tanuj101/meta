@@ -10,8 +10,8 @@ import TimePeriod from "@/components/TimePeriod.astro";
 import type { ColumnSpec, Row } from "@/models/table";
 
 interface Props {
-	columns: ColumnSpec[];
-	data: Row[];
+  columns: ColumnSpec[];
+  data: Row[];
 }
 const { columns, data } = Astro.props;
 
@@ -26,44 +26,46 @@ const pathName = new URL(Astro.request.url).pathname;
  * @returns whether the current page URL matches the URL of the row
  */
 function isCurr(row: Row) {
-	return Boolean(row.url) && pathName.includes(row.url ?? "");
+  return Boolean(row.url) && pathName.includes(row.url ?? "");
 }
 
 function getUrl(row: Row, key: "epic" | "org" | "institute") {
-	const type = row.type;
+  const type = row.type;
 
-	if (type === "role" && key === "org") {
-		return row.url;
-	}
+  if (type === "role" && key === "org") {
+    return row.url;
+  }
 
-	if (type === "role" && key === "epic") {
-		return row.secondaryURL;
-	}
+  if (type === "role" && key === "epic") {
+    return row.secondaryURL;
+  }
 
-	if (type === "project" && key === "epic") {
-		return row.url;
-	}
+  if (type === "project" && key === "epic") {
+    return row.url;
+  }
 
-	if (type === "project" && key === "org") {
-		return row.secondaryURL;
-	}
+  if (type === "project" && key === "org") {
+    return row.secondaryURL;
+  }
 
-	return row.url;
+  return row.url;
 }
 ---
 
 <!-- Padding must be removed because cells are padded individually. -->
 <table
   border="1px"
-  class="cntnr px-0 transition"
-  x-data="{ activeGroup: undefined }">
+  class="cntnr mx-auto px-0 transition"
+  x-data="{ activeGroup: undefined }"
+>
   <thead class="border-y bg-surface0">
     <tr>
       {
         columns.map((column: ColumnSpec) => (
           <th
             scope="col"
-            class:list={[{ 'w-px whitespace-nowrap': !column.isExpanding }]}>
+            class:list={[{ "w-px whitespace-nowrap": !column.isExpanding }]}
+          >
             {column.name ?? column.id}
           </th>
         ))
@@ -82,17 +84,18 @@ function getUrl(row: Row, key: "epic" | "org" | "institute") {
         <tr
           x-data={JSON.stringify({
             groupId: row.groupId ?? idx,
-            categories: 'post' in row.data && row.data.post?.data.categories,
+            categories: "post" in row.data && row.data.post?.data.categories,
           })}
           x-show="!activeCategories.length || activeCategories.some(item => categories.includes(item))"
           x-bind:class="{ 'opacity-30': activeGroup && groupId !== activeGroup }"
           class="clip-0 translate-x-0 transition after:absolute after:inset-y-0 after:start-0 after:bg-peach hover:bg-surface0"
           class:list={{
-            'border-b': row.isLastSibling,
-            'bg-surface0 after:w-1': isCurr(row),
+            "border-b": row.isLastSibling,
+            "bg-surface0 after:w-1": isCurr(row),
           }}
           @mouseenter="activeGroup = groupId"
-          @mouseleave="activeGroup = ''">
+          @mouseleave="activeGroup = ''"
+        >
           {Object.entries(row.data)
             .filter(([key]) => columnIds.includes(key as keyof typeof row.data))
             .sort(
@@ -103,19 +106,22 @@ function getUrl(row: Row, key: "epic" | "org" | "institute") {
             .map(([key, value], idx) => (
               <td
                 class:list={{
-                  'w-px whitespace-nowrap': !columns[idx]?.isExpanding,
-                }}>
-                {key === 'epic' || key === 'org' || key === 'institute' ? (
+                  "w-px whitespace-nowrap": !columns[idx]?.isExpanding,
+                  truncate: 1,
+                }}
+                class="truncate"
+              >
+                {key === "epic" || key === "org" || key === "institute" ? (
                   <Fragment>
                     {value && (
                       <IconName
                         {...value}
                         url={getUrl(row, key)}
-                        reserveSpace={key !== 'institute'}
+                        reserveSpace={key !== "institute"}
                       />
                     )}
                   </Fragment>
-                ) : key === 'post' ? (
+                ) : key === "post" ? (
                   <Fragment>
                     {row.url ? (
                       <Link url={row.url}>{value.data.title}</Link>
@@ -131,9 +137,9 @@ function getUrl(row: Row, key: "epic" | "org" | "institute") {
                       ))}
                     </ul>
                   </Fragment>
-                ) : key === 'link' ? (
+                ) : key === "link" ? (
                   value && <Link url={value}>website</Link>
-                ) : key === 'tech' ? (
+                ) : key === "tech" ? (
                   <Fragment>
                     {/* prettier-ignore */}
                     <ul>
@@ -142,9 +148,9 @@ function getUrl(row: Row, key: "epic" | "org" | "institute") {
                       ))}
                     </ul>
                   </Fragment>
-                ) : key === 'period' ? (
+                ) : key === "period" ? (
                   <TimePeriod {...value} />
-                ) : key === 'published' || key === 'issued' ? (
+                ) : key === "published" || key === "issued" ? (
                   <DateComponent date={value} />
                 ) : (
                   value

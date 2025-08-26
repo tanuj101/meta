@@ -15,19 +15,19 @@ import { getModDate } from "@/utils/mod_date";
 import { buildTree } from "@/utils/toc_tree";
 
 export async function getStaticPaths() {
-	const posts = await getPosts();
-	return posts.map((post) => ({
-		params: {
-			slug: post.id.substring(5),
-		},
-		props: {
-			post,
-		},
-	}));
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    params: {
+      slug: post.id.substring(5),
+    },
+    props: {
+      post,
+    },
+  }));
 }
 
 interface Props {
-	post: CollectionEntry<"posts">;
+  post: CollectionEntry<"posts">;
 }
 const { post } = Astro.props;
 
@@ -38,20 +38,18 @@ const modDate = getModDate(post.id);
 const allPosts = await getPosts();
 
 const seriesPosts = allPosts.filter(
-	(item) => item.data.series === post.data.series,
+  (item) => item.data.series === post.data.series
 );
 const seriesPostsData = getPostsData(seriesPosts);
 
 const metadata = {
-	title: `Post: ${post.data.title}`,
-	description: post.data.description,
+  title: `Post: ${post.data.title}`,
+  description: post.data.description,
 };
 ---
 
 <ScreenLayout>
-  <slot
-    name="head"
-    slot="head">
+  <slot name="head" slot="head">
     <Meta data={metadata} />
   </slot>
 
@@ -96,17 +94,14 @@ const metadata = {
   {
     post.data.series && (
       <Fragment>
-        <div class="cntnr">
+        <div class="cntnr mx-auto">
           <h2 class="hhr text-primary">Series: '{post.data.series}'</h2>
           <p>
             This post is part of the '{post.data.series}' series. If you liked
             it, you might also like these other posts in the series.
           </p>
         </div>
-        <Table
-          columns={postColumns}
-          data={seriesPostsData}
-        />
+        <Table columns={postColumns} data={seriesPostsData} />
       </Fragment>
     )
   }

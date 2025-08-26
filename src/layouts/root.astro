@@ -126,7 +126,17 @@ const { rootClasses = [], bodyClasses = [] } = Astro.props;
       data-website-id="c4984428-ee5c-48bf-bc5e-49bf0932b436"></script>
     <script>
       document.addEventListener("astro:page-load", () => {
-        window.umami.track();
+        if (!import.meta.env.DEV) {
+          window.umami.track({
+            hostname: window.location.hostname,
+            language: navigator.language,
+            referrer: document.referrer,
+            screen: `${window.screen.width}x${window.screen.height}`,
+            title: document.title,
+            url: window.location.pathname,
+            website: "c4984428-ee5c-48bf-bc5e-49bf0932b436",
+          });
+        }
       });
     </script>
   </body>
