@@ -42,4 +42,10 @@ export default defineConfig({
 		alpinejs(),
 		sitemap(),
 	],
+	redirects: {
+		"/portfolio": {
+			status: 302,
+			destination: "/resume",
+		},
+	},
 });
