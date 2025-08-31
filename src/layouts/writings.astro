@@ -39,9 +39,7 @@ const categories = await getCategories();
 ---
 
 <ScreenLayout {...attrs}>
-  <slot
-    name="head"
-    slot="head">
+  <slot name="head" slot="head">
     <!--
     We render the writings index metadata by default.
     Subpages can override this using the `head` slot.
@@ -56,9 +54,7 @@ const categories = await getCategories();
     </div>
 
     <!-- Only shown when JS is enabled, so it will be revealed by JS. -->
-    <div
-      id="all-tags"
-      class="cntnr mx-auto hidden">
+    <div id="all-tags" class="cntnr mx-auto hidden">
       <h2 class="hhr text-primary">Categories</h2>
 
       {
@@ -74,7 +70,8 @@ const categories = await getCategories();
                 <label
                   x-data={`{ category: '${category}' }`}
                   x-bind:class="{'border-peach': activeCategories.includes(category) }"
-                  class="my-1 mr-1 inline-block rounded border px-1 py-0.5 hover:bg-surface0">
+                  class="my-1 mr-1 inline-block rounded border px-1 py-0.5 hover:bg-surface0 select-none"
+                >
                   <input
                     class="hidden"
                     type="checkbox"
@@ -90,10 +87,7 @@ const categories = await getCategories();
           </Fragment>
         ) : (
           <p class="text-yellow">
-            <Icon
-              source="lucide"
-              name="circle-slash-2"
-            />
+            <Icon source="lucide" name="circle-slash-2" />
             No categories to show.
           </p>
         )
@@ -105,16 +99,12 @@ const categories = await getCategories();
     </div>
     {
       postsData.length ? (
-        <Table
-          columns={postColumns}
-          data={postsData}
-        />
+        <div class="cntnr mx-auto overflow-auto [&_td:nth-child(2)]:max-w-0">
+          <Table columns={postColumns} data={postsData} />
+        </div>
       ) : (
         <p class="cntnr mx-auto text-yellow">
-          <Icon
-            source="lucide"
-            name="circle-slash-2"
-          />
+          <Icon source="lucide" name="circle-slash-2" />
           No posts to show.
         </p>
       )
@@ -122,10 +112,10 @@ const categories = await getCategories();
   </article>
 
   <!-- content for the right pane -->
-  <slot slot={hasContent ? 'secondary' : undefined}>Hello</slot>
+  <slot slot={hasContent ? "secondary" : undefined}>Hello</slot>
 </ScreenLayout>
 
 <script>
   // Only show the tag filtering buttons when JS is enabled.
-  document.querySelector('#all-tags')?.classList.remove('hidden')
+  document.querySelector("#all-tags")?.classList.remove("hidden");
 </script>

@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 
 export const GET: APIRoute<Props> = async ({ props: { post } }) =>
 	getOgImage({
-		left: "Writings",
+		left: "writings",
 		right: `
       <div class="flex">
         <div class="mr-3">First published</div>

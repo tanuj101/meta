@@ -6,7 +6,9 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const srcDir = import.meta.env.DEV
 	? path.resolve(__filename, "../..")
-	: path.resolve(__filename, "../../../src");
+	: path.resolve(__filename, "../../../../../src");
+
+console.log({ __filename, srcDir });
 
 /**
  * Get the modification timestamp of a file from Git. In case this doesn't work,
@@ -16,7 +18,11 @@ const srcDir = import.meta.env.DEV
  * @returns the modification timestamp of the file
  */
 function getGitMtime(path: string): string {
-	return execSync(`git log -1 --format=%cI ${path}`).toString();
+	try {
+		return execSync(`git log -1 --format=%cI ${path}`).toString();
+	} catch {
+		return "";
+	}
 }
 
 /**

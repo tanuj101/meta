@@ -1,0 +1,108 @@
+---
+title: AI Workflows with Open Source Models and AMD GPU
+description: >-
+  Automating workflows with Open Source AI models on AMD GPUs 100% free.
+pubDate: 2025-07-06
+categories:
+  - Artificial Intelligence
+isDraft: false
+---
+
+import { Image, Picture } from "astro:assets";
+import Link from "@/components/Link.astro";
+import annotationInputImg from '@/assets/images/ai-amd-demo-input.png';
+import annotationOutputImg from '@/assets/images/ai-amd-demo-output.png';
+import lmstudioDevMode from '@/assets/images/lmstudio-dev-mode.png';
+import lmstudioLocal from '@/assets/images/lmstudio-local.png';
+import lmstudioServerIP from '@/assets/images/lm-studio-server-ip.png';
+import n8nIP from '@/assets/images/n8n-ip.png';
+import analyzeImageNode from '@/assets/images/analyze-image-node.png';
+import gdriveNode from '@/assets/images/gdrive-node.png';
+import sheetNode from '@/assets/images/sheet-node.png';
+import workflowExecution from '@/assets/images/workflow-execution.png';
+
+import IconName from '@/components/IconName.astro'
+
+Why do I even have an AMD GPU for AI?
+
+Back then when I was looking to build a new PC, I was looking for a GPU that could handle gaming well. AMD GPUs are always known for value for money for this. Little did I know that I'll soon be tinkering with AI.
+
+## What intrigued me?
+Curiosity, I had my eye on cutting edge AI tools evolving in the tech. I wanted to have some action with them. I was particularly interested in open source models that could run on my local machine. There was all kinds of things to work on like image generation, chat models etc.
+
+## What did I do?
+I created an image annotation workflow using:
+- <Link target="_blank" href="https://huggingface.co/unsloth/gemma-3-12b-it-GGUF">Google Gemma 3</Link> - AI Model capable of image analysis.
+- <Link target="_blank" href="https://github.com/n8n-io/n8n">n8n</Link> - Workflow automation platform.
+- <Link target="_blank" href="https://lmstudio.ai/">LM Studio</Link> - Local AI toolkit to manage AI models.
+
+All of the AI are open source and free to use.
+
+With the AI workflow I turned this
+<Image src={annotationInputImg} alt="Annotation input folder"/>
+
+into this
+<Image src={annotationOutputImg} alt="Annotation output sheet"/>
+
+## The Setup
+### Basic requirements
+- LMStudio with Gemma 3 model downloaded/installed or any other model with image input capabilities, you can also run it on docker but it should be an OpenAI-compatible server I'd say go with LMStudio if you're on AMD GPU as well this already has AMD compatible engines and is easy to set up.
+- n8n installed on your machine, and basic knowledge about it you can learn it from <Link target="_blank" href="https://docs.n8n.io/">n8n</Link>
+
+### Google Credentials
+For the Google sheet and Drive access, you'd need to obtain OAuth 2.0 credentials from <a href="https://developers.google.com/identity/protocols/oauth2" target="_blank">API Console</a> (it's free).
+
+### n8n and Chat model integration
+Now comes the part where you'd link up your local AI model with n8n, they don't directly provide a way to do this so we'll be using their generic Open AI credential to connect to the local model.
+1. Start up LM Studio and in the status bar below switch to the `Developer` mode.
+  <Image src={lmstudioDevMode} alt="LM Studio developer mode"/>
+2. After this you'll see the left sidebar popped up and select the Developer tab.
+3. Then you'd have to enable the server and make sure it's serving on the local network.
+  <Image src={lmstudioLocal} alt="LM Studio dev server"/>
+  You will notice the server has started on your local IP with Open AI compatible API, note the port, we will need it in the next step.
+  <Image src={lmstudioServerIP} alt="LM Studio server IP address"/>
+4. Now in n8n, go to `Credentials` and create a new credential of type `OpenAI` and fill in the Base URL like below:
+  ```sh
+    http://{YOUR_IP_V4}:{PORT}/v1
+  ```
+
+  <Image src={n8nIP} alt="Creating Open AI credentials"/>
+
+  In my case my local IP was `192.168.29.253` plus the port in the last step.
+
+## The Workflow
+Download the <Link target="_blank" href="/annotation-workflow.json">workflow</Link> and import it in your n8n workflow with the `Import from File` option. You will have to set up the Google credentials in the nodes that require it.
+
+Select the appropriate model and the Open AI credentials you created in the  `Analyze image` node.
+
+<Image src={analyzeImageNode} alt="Configuring AI node in n8n"/>
+
+In the Google Drive node, select the folder where your images are stored and in the Google Sheets nodes select the sheet where you want to store the annotations.
+
+<Image src={gdriveNode} alt="Configuring Google Drive node in n8n"/>
+
+In my case I created a folder named `Images` in my Google Drive and put some images in it.
+
+
+<Image src={sheetNode} alt="Configuring Google Sheet node in n8n"/>
+
+For the `Append Row in Sheet` node in the workflow, select appropriate google document and sheet name.
+
+
+### Execute the workflow
+
+Hit the `Execute Workflow` button  and you should see the workflow running step by step.
+
+
+<Image src={workflowExecution} alt="n8n workflow execution"/>
+
+After it has gone through all the images, you should see the annotations in your Google Sheet as expected.
+
+Voila! You have successfully set up an AI powered image annotation workflow using AMD GPU.
+
+> Bonus: You can also add more nodes to parallelize the annotation in batches like you would do so in a python/node.js coded script.
+
+
+I know we can do all of this with a simple programmed script but I wanted to explore n8n and AI capabilities of AMD GPUs. Also, this is a no-code solution, with n8n we can create multiple workflows and link them up with each other as sub-workflows as well. I find n8n very powerful and flexible for the non-tech people in your team.
+
+---
