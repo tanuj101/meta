@@ -8,6 +8,8 @@ const srcDir = import.meta.env.DEV
 	? path.resolve(__filename, "../..")
 	: path.resolve(__filename, "../../../../../src");
 
+console.log({ __filename, srcDir });
+
 /**
  * Get the modification timestamp of a file from Git. In case this doesn't work,
  * it returns a blank string.
