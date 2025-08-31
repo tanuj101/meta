@@ -41,6 +41,8 @@ export function getModDate(slug: string): Date {
 	const gitTimestamp = getGitMtime(filePath);
 	const fsTimestamp = getFsMtime(filePath);
 
+	console.log({ filePath, gitTimestamp, fsTimestamp });
+
 	const timestamp = gitTimestamp || fsTimestamp;
 	return new Date(timestamp);
 }
