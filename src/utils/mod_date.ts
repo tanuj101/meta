@@ -19,7 +19,10 @@ console.log({ __filename, srcDir });
  */
 function getGitMtime(path: string): string {
 	try {
-		return execSync(`git log -1 --format=%cI ${path}`).toString();
+		return (
+			execSync(`git log -1 --format=%cI ${path}`).toString().split("\n")[0] ||
+			""
+		);
 	} catch {
 		return "";
 	}
