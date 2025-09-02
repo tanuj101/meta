@@ -12,42 +12,37 @@ import { epics } from "@/stores/recivi";
 import { urlToDest } from "@/utils/recivi";
 
 export async function getStaticPaths() {
-	return epics.map((epic) => ({
-		params: {
-			id: epic.id,
-		},
-		props: {
-			epic,
-		},
-	}));
+  return epics.map((epic) => ({
+    params: {
+      id: epic.id,
+    },
+    props: {
+      epic,
+    },
+  }));
 }
 
 interface Props {
-	epic: Epic;
+  epic: Epic;
 }
 
 const { epic } = Astro.props;
 
 const metadata = {
-	title: `Epic: ${epic.name}`,
-	description: `Know about the epic ${epic.name} and my work on it.`,
-	banRobots: false,
+  title: `Epic: ${epic.name}`,
+  description: `Know about the epic ${epic.name} and my work on it.`,
+  banRobots: false,
 };
 ---
 
 <ScreenLayout>
-  <slot
-    name="head"
-    slot="head">
+  <slot name="head" slot="head">
     <Meta data={metadata} />
   </slot>
 
   <div class="cntnr mx-auto my-4">
     <h1 class="text-3xl text-primary sm:text-5xl">
-      <IconName
-        {...epic}
-        target="_blank"
-      />
+      <IconName {...epic} target="_blank" />
     </h1>
 
     <!-- Org -->
@@ -74,12 +69,11 @@ const metadata = {
     {
       epic.projects.map((project) => (
         <div>
-          <h2
-            id={project.id}
-            class="hhr text-primary">
+          <h2 id={project.id} class="hhr text-primary">
             <a
               href={`#${project.id}`}
-              class="text-[inherit] no-underline decoration-curr visited:text-[inherit] visited:decoration-curr hover:underline">
+              class="text-[inherit] no-underline decoration-curr visited:text-[inherit] visited:decoration-curr hover:underline"
+            >
               {project.name}
             </a>
           </h2>

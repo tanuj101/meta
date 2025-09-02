@@ -75,7 +75,8 @@
 	a[href$=".pdf"],
 	a[href^="http"],
 	a[href^="mailto:"],
-	a[href^="tel:"] {
+	a[href^="tel:"],
+	a[target="_blank"] {
 		/* Special links */
 		@apply after:mx-0.5 after:inline-block after:text-blue after:transition-transform visited:after:text-mauve hover:after:transform;
 	}
@@ -85,7 +86,8 @@
 		@apply after:content-["↓"] hover:after:translate-y-1;
 	}
 
-	a[href^="http"] {
+	a[href^="http"],
+	a[target="_blank"] {
 		/* External links */
 		/* IDEA: ⤴ is another nice arrow that conveys a similar idea to ↗. */
 		@apply after:content-["↗"] hover:after:-translate-y-1 hover:after:translate-x-1;

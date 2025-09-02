@@ -1,7 +1,6 @@
 import { icons as lIcons } from "@iconify-json/lucide";
 import { icons as siIcons } from "@iconify-json/simple-icons";
 
-import _2fac from "@/assets/icons/2fac.svg?raw";
 import almada from "@/assets/icons/almada.svg?raw";
 import browserstack from "@/assets/icons/browserstack.svg?raw";
 import finrep from "@/assets/icons/finrep.svg?raw";
@@ -17,10 +16,10 @@ import portfolio from "@/assets/icons/portfolio.svg?raw";
 import recivi from "@/assets/icons/recivi.svg?raw";
 import skyscraper from "@/assets/icons/skyscraper.svg?raw";
 import starlight from "@/assets/icons/starlight.svg?raw";
+import xpromo from "@/assets/icons/xpromo.svg?raw";
 import yojak from "@/assets/icons/yojak.svg?raw";
 
 const knownIcons = {
-	"2fac": _2fac,
 	browserstack,
 	finrep,
 	img,
@@ -37,18 +36,21 @@ const knownIcons = {
 	nexusplatform,
 	instantpost,
 	calyxpod,
+	xpromo,
 } as Record<string, string>;
 
 // These are generally epics that don't have their own icon and just use the
 // the icon of the parent org.
 const aliases = {
 	"kwalee-design-system": "kwalee",
+	"kwalee.com": "kwalee",
 	"casual-games-tools": "kwalee",
 	"ds-infra": "kwalee",
 	"ds-docs": "kwalee",
 	"printing-platform": "instantpost",
 	"printing-sdk": "instantpost",
 	bootstrap: "instantpost",
+	"x-promo": "xpromo",
 } as Record<string, string>;
 
 export type Source = "simple_icons" | "lucide";
@@ -62,6 +64,7 @@ export type Source = "simple_icons" | "lucide";
  * @returns the SVG body of the icon
  */
 export function getBody(name: string, source: Source = "simple_icons") {
+	console.log(name);
 	const identifier = aliases[name] ?? name;
 
 	const icon = knownIcons[identifier];
