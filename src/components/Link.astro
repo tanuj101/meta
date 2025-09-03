@@ -13,4 +13,4 @@ const href = urlToDest(url);
 const title = typeof url === "object" && "label" in url ? url.label : undefined;
 ---
 
-<a {href} {title} {...attrs} class="truncate"><slot>website</slot></a>
+<a {href} {title} {...attrs}><slot>website</slot></a>
