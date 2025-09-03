@@ -64,7 +64,6 @@ export type Source = "simple_icons" | "lucide";
  * @returns the SVG body of the icon
  */
 export function getBody(name: string, source: Source = "simple_icons") {
-	console.log(name);
 	const identifier = aliases[name] ?? name;
 
 	const icon = knownIcons[identifier];

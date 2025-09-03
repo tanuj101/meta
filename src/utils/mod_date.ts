@@ -8,8 +8,6 @@ const srcDir = import.meta.env.DEV
 	? path.resolve(__filename, "../..")
 	: path.resolve(__filename, "../../../../../src");
 
-console.log({ __filename, srcDir });
-
 /**
  * Get the modification timestamp of a file from Git. In case this doesn't work,
  * it returns a blank string.
@@ -43,8 +41,6 @@ export function getModDate(slug: string): Date {
 	const filePath = path.resolve(srcDir, "posts", `${slug}.mdx`);
 	const gitTimestamp = getGitMtime(filePath);
 	const fsTimestamp = getFsMtime(filePath);
-
-	console.log({ filePath, gitTimestamp, fsTimestamp });
 
 	const timestamp = gitTimestamp || fsTimestamp;
 	return new Date(timestamp);
